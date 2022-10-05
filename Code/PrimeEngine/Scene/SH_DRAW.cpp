@@ -24,6 +24,7 @@
 #include "DrawList.h"
 #include "PrimeEngine/Scene/DefaultAnimationSM.h"
 #include "PrimeEngine/Geometry/IndexBufferCPU/IndexBufferCPU.h"
+#include "PrimeEngine/Scene/DebugRenderer.h"
 
 #include "PrimeEngine/APIAbstraction/GPUBuffers/AnimSetBufferGPU.h"
 #include "PrimeEngine/Render/ShaderActions/SetInstanceControlConstantsShaderAction.h"
@@ -197,23 +198,178 @@ void SingleHandler_DRAW::do_GATHER_DRAWCALLS(Events::Event *pEvt)
     
     // debug testing of instance culling. do collision check instead.
     // remove false && to enable
-    if (false && pMeshCaller->m_performBoundingVolumeCulling)
+    if (pMeshCaller->m_performBoundingVolumeCulling)
     {
         pMeshCaller->m_numVisibleInstances = 0;
         
         for (int iInst = 0; iInst < pMeshCaller->m_instances.m_size; ++iInst)
         {
             MeshInstance *pInst = pMeshCaller->m_instances[iInst].getObject<MeshInstance>();
-            if (iInst % 2)
-            {
-                pInst->m_culledOut = false;
-                ++pMeshCaller->m_numVisibleInstances;
-            }
-            else
-            {
-                pInst->m_culledOut = true;
-            }
+			Mesh* pMesh = pInst->m_hAsset.getObject<Mesh>();
+			
+			Handle hSN = pInst->getFirstParentByType<SceneNode>();
+			if (hSN.isValid())
+			{
+
+				SceneNode* pSN = hSN.getObject<SceneNode>();
+				Matrix4x4 m_worldTransform = pSN->m_base;
+
+				Array<Vector3> pointsList = pMesh->m_aabb;
+
+				Vector3 color(0, 5.0, 1.0f);
+				Matrix4x4 v1;
+				Vector3 point1, point2;
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[0].m_x;
+				v1.m[1][0] = pointsList[0].m_y;
+				v1.m[2][0] = pointsList[0].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+				
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[1].m_x;
+				v1.m[1][0] = pointsList[1].m_y;
+				v1.m[2][0] = pointsList[1].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+				Vector3 linepts[] = { point1, color, point2, color};
+
+				DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts[0].m_x, 2, 0);
+				for (int i = 0; i < 3; i++) {
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i].m_x;
+					v1.m[1][0] = pointsList[i].m_y;
+					v1.m[2][0] = pointsList[i].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i+1].m_x;
+					v1.m[1][0] = pointsList[i+1].m_y;
+					v1.m[2][0] = pointsList[i+1].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+					Vector3 linepts2[] = { point1, color, point2, color };
+
+					DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts2[0].m_x, 2, 0);
+					
+				}
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[3].m_x;
+				v1.m[1][0] = pointsList[3].m_y;
+				v1.m[2][0] = pointsList[3].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[0].m_x;
+				v1.m[1][0] = pointsList[0].m_y;
+				v1.m[2][0] = pointsList[0].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+				Vector3 linepts2[] = { point1, color, point2, color };
+
+				DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts2[0].m_x, 2, 0);
+				for (int i = 4; i < 7; i++) {
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i].m_x;
+					v1.m[1][0] = pointsList[i].m_y;
+					v1.m[2][0] = pointsList[i].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i + 1].m_x;
+					v1.m[1][0] = pointsList[i + 1].m_y;
+					v1.m[2][0] = pointsList[i + 1].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+					Vector3 linepts2[] = { point1, color, point2, color };
+
+					DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts2[0].m_x, 2, 0);
+				}
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[7].m_x;
+				v1.m[1][0] = pointsList[7].m_y;
+				v1.m[2][0] = pointsList[7].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+
+				v1.loadIdentity();
+				v1.m[0][0] = pointsList[4].m_x;
+				v1.m[1][0] = pointsList[4].m_y;
+				v1.m[2][0] = pointsList[4].m_z;
+				v1.m[3][0] = 1;
+				v1 = pSN->m_base * v1;
+				point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+				Vector3 linepts3[] = { point1, color, point2, color };
+
+				DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts3[0].m_x, 2, 0);
+				for (int i = 0; i < 4; i++) {
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i].m_x;
+					v1.m[1][0] = pointsList[i].m_y;
+					v1.m[2][0] = pointsList[i].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+
+					v1.loadIdentity();
+					v1.m[0][0] = pointsList[i + 4].m_x;
+					v1.m[1][0] = pointsList[i + 4].m_y;
+					v1.m[2][0] = pointsList[i + 4].m_z;
+					v1.m[3][0] = 1;
+					v1 = pSN->m_base * v1;
+					point2 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+					Vector3 linepts2[] = { point1, color, point2, color };
+
+					DebugRenderer::Instance()->createLineMesh(false, Matrix4x4(), &linepts2[0].m_x, 2, 0);
+				}
+				
+				if (pDrawEvent == NULL) {
+					pInst->m_culledOut = true;
+					continue;
+				}
+				Matrix4x4 point;
+				bool isPointsInside = false;
+				for (int i = 0; i < 8; i++) {
+					point.loadIdentity();
+					point.m[0][0] = pointsList[i].m_x;
+					point.m[1][0] = pointsList[i].m_y;
+					point.m[2][0] = pointsList[i].m_z;
+					point.m[3][0] = 1;
+					point = pSN->m_base * point;
+					float distL = pDrawEvent->m_pLeft.a * point.m[0][0] + pDrawEvent->m_pLeft.b * point.m[1][0] + pDrawEvent->m_pLeft.c * point.m[2][0] + pDrawEvent->m_pLeft.d;
+					float distR = pDrawEvent->m_pRight.a * point.m[0][0] + pDrawEvent->m_pRight.b * point.m[1][0] + pDrawEvent->m_pRight.c * point.m[2][0] + pDrawEvent->m_pRight.d;
+					float distT = pDrawEvent->m_pTop.a * point.m[0][0] + pDrawEvent->m_pTop.b * point.m[1][0] + pDrawEvent->m_pTop.c * point.m[2][0] + pDrawEvent->m_pTop.d;
+					float distB = pDrawEvent->m_pBottom.a * point.m[0][0] + pDrawEvent->m_pBottom.b * point.m[1][0] + pDrawEvent->m_pBottom.c * point.m[2][0] + pDrawEvent->m_pBottom.d;
+					float distN = pDrawEvent->m_pNear.a * point.m[0][0] + pDrawEvent->m_pNear.b * point.m[1][0] + pDrawEvent->m_pNear.c * point.m[2][0] + pDrawEvent->m_pNear.d;
+					float distF = pDrawEvent->m_pFar.a * point.m[0][0] + pDrawEvent->m_pFar.b * point.m[1][0] + pDrawEvent->m_pFar.c * point.m[2][0] + pDrawEvent->m_pFar.d;
+					
+					isPointsInside = isPointsInside || (distL >= 3 && distR >= 3 && distT >= 3 && distB >= 3 && distN >= 3 && distF >= 3);
+				}
+				if (isPointsInside)
+				{
+					pInst->m_culledOut = false;
+					++pMeshCaller->m_numVisibleInstances;
+				}
+				else
+				{
+					pInst->m_culledOut = true;
+				}
+			}
         }
+
+		
     }
     
 

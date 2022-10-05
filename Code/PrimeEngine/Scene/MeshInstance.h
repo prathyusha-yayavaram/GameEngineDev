@@ -39,6 +39,7 @@ struct MeshInstance : public Component
 	Handle m_hAsset;
 
 	int m_skinDebugVertexId;
+	Handle m_hAnimationSM;
 };
 
 }; // namespace Components

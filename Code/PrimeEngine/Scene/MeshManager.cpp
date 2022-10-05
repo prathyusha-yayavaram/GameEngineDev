@@ -66,10 +66,55 @@ PE::Handle MeshManager::getAsset(const char *asset, const char *package, int &th
 		
 		PE::Handle hMesh("Mesh", sizeof(Mesh));
 		Mesh *pMesh = new(hMesh) Mesh(*m_pContext, m_arena, hMesh);
+		//sprintf(pMesh->m_hPositionBufferCPU);
 		pMesh->addDefaultComponents();
-
+		
 		pMesh->loadFromMeshCPU_needsRC(mcpu, threadOwnershipMask);
-
+		Array<PrimitiveTypes::Float32> m_positionValues = pMesh->m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_values;
+		float min_x = NULL, min_y = NULL, min_z = NULL, max_x = NULL, max_y = NULL, max_z = NULL;
+		for (int i = 0; i < m_positionValues.m_size; i++) {
+			PrimitiveTypes::Float32 curValue = m_positionValues.getByIndexUnchecked(i);
+			if (i % 3 == 0) {
+				if (min_x == NULL) {
+					min_x = curValue;
+				}
+				if (max_x == NULL) {
+					max_x = curValue;
+				}
+				min_x = min(min_x, curValue);
+				max_x = max(max_x, curValue);
+			}
+			else if (i % 3 == 1) {
+				if (min_y == NULL) {
+					min_y = curValue;
+				}
+				if (max_y == NULL) {
+					max_y = curValue;
+				}
+				min_y = min(min_y, curValue);
+				max_y = max(max_y, curValue);
+			}
+			else {
+				if (min_z == NULL) {
+					min_z = curValue;
+				}
+				if (max_z == NULL) {
+					max_z = curValue;
+				}
+				min_z = min(min_z, curValue);
+				max_z = max(max_z, curValue);
+			}
+			
+			pMesh->m_aabb.reset(8);
+			pMesh->m_aabb.add(Vector3(min_x, min_y, min_z));
+			pMesh->m_aabb.add(Vector3(min_x, max_y, min_z));
+			pMesh->m_aabb.add(Vector3(max_x, max_y, min_z));
+			pMesh->m_aabb.add(Vector3(max_x, min_y, min_z));
+			pMesh->m_aabb.add(Vector3(min_x, min_y, max_z));
+			pMesh->m_aabb.add(Vector3(min_x, max_y, max_z));
+			pMesh->m_aabb.add(Vector3(max_x, max_y, max_z));
+			pMesh->m_aabb.add(Vector3(max_x, min_y, max_z));
+		}
 #if PE_API_IS_D3D11
 		// todo: work out how lods will work
 		//scpu.buildLod();

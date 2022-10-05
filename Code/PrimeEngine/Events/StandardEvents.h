@@ -19,6 +19,7 @@
 
 // Sibling/Children includes
 #include "Event.h"
+#include "Plane.h"
 
 struct lua_State;
 
@@ -64,6 +65,9 @@ struct Event_GATHER_DRAWCALLS : public Event {
 	Matrix4x4 m_projectionTransform;
 	Matrix4x4 m_parentWorldTransform;
 	Matrix4x4 m_viewInvTransform;
+
+	Plane m_pLeft, m_pRight, m_pTop, m_pBottom, m_pNear, m_pFar;
+
 
 	Vector3 m_eyePos;
 	Vector3 m_eyeDir;

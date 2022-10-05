@@ -197,7 +197,12 @@ int ClientGame::runGameFrame()
 				drawEvt->m_eyeDir = pcam->m_worldTransform.getN();
                 drawEvt->m_parentWorldTransform.loadIdentity();
                 drawEvt->m_viewInvTransform = pcam->m_worldToViewTransform.inverse();
-                
+				drawEvt->m_pLeft = pcam->m_pLeft;
+				drawEvt->m_pRight = pcam->m_pRight;
+				drawEvt->m_pTop = pcam->m_pTop;
+				drawEvt->m_pBottom = pcam->m_pBottom;
+				drawEvt->m_pNear = pcam->m_pNear;
+				drawEvt->m_pFar = pcam->m_pFar;
 				//Commented out by Mac because I'm pretty sure this does nothing but am afraid to delete it...
 				static bool setCameraAsLightSource = false;
 				RootSceneNode *pRoot = RootSceneNode::Instance();

@@ -191,15 +191,15 @@ int ClientCharacterControlGame::initGame()
     
     m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
 	
-    bool spawnALotOfMeshes = false;
+    bool spawnALotOfMeshes = true;
     
-    int maxX = 10; // maybe need more to get framerate lower
+    int maxX = 7; // maybe need more to get framerate lower
     
     if (spawnALotOfMeshes)
     {
         for (int ix = 0; ix < maxX; ++ix)
         {
-            for (int iy = 0; iy < 10; ++iy)
+            for (int iy = 0; iy < 8; ++iy)
             {
                 PE::Handle hSN("SCENE_NODE", sizeof(SceneNode));
                 SceneNode *pMainSN = new(hSN) SceneNode(*m_pContext, m_arena, hSN);

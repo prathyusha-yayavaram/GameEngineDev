@@ -16,6 +16,7 @@
 #include "PrimeEngine/Math/CameraOps.h"
 
 #include "SceneNode.h"
+#include "Plane.h"
 
 
 // Sibling/Children includes
@@ -45,6 +46,7 @@ struct CameraSceneNode : public SceneNode
 	Matrix4x4 m_worldToViewTransform2;
 	Matrix4x4 m_worldTransform2;
 	Matrix4x4 m_viewToProjectedTransform; // objects in local (view) space are multiplied by this to get them to screen space
+	Plane m_pLeft, m_pRight, m_pTop, m_pBottom, m_pNear, m_pFar;
 	float m_near, m_far;
 };
 }; // namespace Components

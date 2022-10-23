@@ -604,9 +604,6 @@
     <Filter Include="PrimeEngine\Utils\Array">
       <UniqueIdentifier>{26364744-926D-8FDB-9B77-F3FE072EB6D4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PrimeEngine\Physics">
-      <UniqueIdentifier>{934e35c5-5a0c-4972-a879-b7e11758b67c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PrimeEngine\Lua\Networking">
       <UniqueIdentifier>{6F87AFFF-5B81-D851-44EE-6E6230873EBE}</UniqueIdentifier>
     </Filter>
@@ -1053,9 +1050,6 @@
     <ClInclude Include="PrimeEngine\Scene\MeshManager.h">
       <Filter>PrimeEngine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="PrimeEngine\Scene\PhysicsManager.h">
-      <Filter>PrimeEngine\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="PrimeEngine\Scene\RootSceneNode.h">
       <Filter>PrimeEngine\Scene</Filter>
     </ClInclude>
@@ -1118,21 +1112,6 @@
     </ClInclude>
     <ClInclude Include="PrimeEngine\Utils\StringOps.h">
       <Filter>PrimeEngine\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeEngine\Physics\BoxCollider.h">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeEngine\Physics\PhysicsComponent.h">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeEngine\Physics\PhysicsManager.h">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeEngine\Physics\SphereCollider.h">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeEngine\Physics\PhysicsData.h">
-      <Filter>PrimeEngine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1526,9 +1505,6 @@
     <ClCompile Include="PrimeEngine\Scene\MeshManager.cpp">
       <Filter>PrimeEngine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="PrimeEngine\Scene\PhysicsManager.cpp">
-      <Filter>PrimeEngine\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="PrimeEngine\Scene\RootSceneNode.cpp">
       <Filter>PrimeEngine\Scene</Filter>
     </ClCompile>
@@ -1567,15 +1543,6 @@
     </ClCompile>
     <ClCompile Include="PrimeEngine\Utils\PEString.cpp">
       <Filter>PrimeEngine\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="PrimeEngine\Physics\BoxCollider.cpp">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PrimeEngine\Physics\PhysicsManager.cpp">
-      <Filter>PrimeEngine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PrimeEngine\Physics\SphereCollider.cpp">
-      <Filter>PrimeEngine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

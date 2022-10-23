@@ -205,11 +205,6 @@
     <ClInclude Include="PrimeEngine\Networking\Server\ServerConnectionManager.h" />
     <ClInclude Include="PrimeEngine\Networking\Server\ServerNetworkManager.h" />
     <ClInclude Include="PrimeEngine\Networking\StreamManager.h" />
-    <ClInclude Include="PrimeEngine\Physics\BoxCollider.h" />
-    <ClInclude Include="PrimeEngine\Physics\PhysicsComponent.h" />
-    <ClInclude Include="PrimeEngine\Physics\PhysicsData.h" />
-    <ClInclude Include="PrimeEngine\Physics\PhysicsManager.h" />
-    <ClInclude Include="PrimeEngine\Physics\SphereCollider.h" />
     <ClInclude Include="PrimeEngine\PrimeEngineIncludes.h" />
     <ClInclude Include="PrimeEngine\PrimitiveTypes\PrimitiveTypes.h" />
     <ClInclude Include="PrimeEngine\Profiling\Profiling.h" />
@@ -240,7 +235,6 @@
     <ClInclude Include="PrimeEngine\Scene\Mesh.h" />
     <ClInclude Include="PrimeEngine\Scene\MeshInstance.h" />
     <ClInclude Include="PrimeEngine\Scene\MeshManager.h" />
-    <ClInclude Include="PrimeEngine\Scene\PhysicsManager.h" />
     <ClInclude Include="PrimeEngine\Scene\RootSceneNode.h" />
     <ClInclude Include="PrimeEngine\Scene\SH_DRAW.h" />
     <ClInclude Include="PrimeEngine\Scene\SceneNode.h" />
@@ -367,9 +361,6 @@
     <ClCompile Include="PrimeEngine\Networking\Server\ServerConnectionManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\Server\ServerNetworkManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\StreamManager.cpp" />
-    <ClCompile Include="PrimeEngine\Physics\BoxCollider.cpp" />
-    <ClCompile Include="PrimeEngine\Physics\PhysicsManager.cpp" />
-    <ClCompile Include="PrimeEngine\Physics\SphereCollider.cpp" />
     <ClCompile Include="PrimeEngine\Profiling\Profiling.cpp" />
     <ClCompile Include="PrimeEngine\Render\D3D9Renderer.cpp" />
     <ClCompile Include="PrimeEngine\Render\IRenderer.cpp" />
@@ -397,7 +388,6 @@
     <ClCompile Include="PrimeEngine\Scene\Mesh.cpp" />
     <ClCompile Include="PrimeEngine\Scene\MeshInstance.cpp" />
     <ClCompile Include="PrimeEngine\Scene\MeshManager.cpp" />
-    <ClCompile Include="PrimeEngine\Scene\PhysicsManager.cpp" />
     <ClCompile Include="PrimeEngine\Scene\RootSceneNode.cpp" />
     <ClCompile Include="PrimeEngine\Scene\SH_DRAW.cpp" />
     <ClCompile Include="PrimeEngine\Scene\SceneNode.cpp" />

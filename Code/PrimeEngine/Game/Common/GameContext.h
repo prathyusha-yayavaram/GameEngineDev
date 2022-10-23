@@ -15,6 +15,7 @@ namespace Components{
 	struct GameObjectManager;
 	struct DefaultGameControls;
 	struct MeshManager;
+	struct PhysicsManager;
     
 };
 class Application;
@@ -37,6 +38,7 @@ struct GameContext
 	Components::NetworkManager *getNetworkManager(){return m_pNetworkManager;}
 	Components::MeshManager *getMeshManager(){return m_pMeshManager;}
 	Components::GameObjectManager *getGameObjectManager(){return m_pGameObjectManager;}
+	Components::PhysicsManager *getPhysicsManager() { return m_physicsManager; }
 	Components::DefaultGameControls *getDefaultGameControls(){return m_pDefaultGameControls;}
 	unsigned short getLuaCommandServerPort(){return m_luaCommandServerPort;}
 	bool getIsServer(){return m_isServer;}
@@ -54,6 +56,7 @@ struct GameContext
 	Components::Log *m_pLog;
 	Components::NetworkManager *m_pNetworkManager;
 	Components::GameObjectManager *m_pGameObjectManager;
+	Components::PhysicsManager *m_physicsManager;
 	Components::MeshManager *m_pMeshManager;
 	PE::MemoryArena m_defaultArena;
 	unsigned short m_luaCommandServerPort;

@@ -3,6 +3,7 @@
 #include "RenderJob.h"
 
 #include "PrimeEngine/Scene/DrawList.h"
+#include "PrimeEngine/Physics/PhysicsManager.h"
 
 #if APIABSTRACTION_IOS
 #import <QuartzCore/QuartzCore.h>
@@ -219,7 +220,7 @@ int ClientGame::runGameFrame()
             
             {
                 Handle hphysicsEndEvt("EVENT", sizeof(Event_PHYSICS_END));
-                /*Event_PHYSICS_END *physicsEndEvt = */ new(hphysicsEndEvt) Event_PHYSICS_END ;
+                Event_PHYSICS_END *physicsEndEvt = new(hphysicsEndEvt) Event_PHYSICS_END ;
                 
                 Events::EventQueueManager::Instance()->add(hphysicsEndEvt);
             }
@@ -412,10 +413,12 @@ int ClientGame::runGameFrame()
         else if (Event_PHYSICS_END::GetClassId() == pGeneralEvt->getClassId())
         {
 			// fetch physics results
+			proot->handleEvent(pGeneralEvt);
         }
         else if (Event_PHYSICS_START::GetClassId() == pGeneralEvt->getClassId())
         {
 			// physics kick off
+			m_pContext->getPhysicsManager()->simulate(m_frameTime);
         }
         else
         {

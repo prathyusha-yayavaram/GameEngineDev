@@ -8,6 +8,8 @@
 #include "PrimeEngine/APIAbstraction/Effect/EffectManager.h"
 #include "../Lua/LuaEnvironment.h"
 #include "PrimeEngine/Render/ShaderActions/SetPerFrameConstantsShaderAction.h"
+
+#include "PrimeEngine/Physics/PhysicsManager.h"
 namespace PE {
 namespace Components {
 
@@ -37,6 +39,21 @@ void RootSceneNode::addDefaultComponents()
 
 	PE_REGISTER_EVENT_HANDLER(Events::Event_GATHER_DRAWCALLS, RootSceneNode::do_GATHER_DRAWCALLS);
 	PE_REGISTER_EVENT_HANDLER(Events::Event_GATHER_DRAWCALLS_Z_ONLY, RootSceneNode::do_GATHER_DRAWCALLS);
+	PE_REGISTER_EVENT_HANDLER(Events::Event_PHYSICS_END, RootSceneNode::do_PHYSICS_END);
+}
+
+void RootSceneNode::do_PHYSICS_END(Events::Event* pEvt)
+{
+	PE::Handle* pHC = m_components.getFirstPtr();
+	for (PrimitiveTypes::UInt32 i = 0; i < m_components.m_size; i++, pHC++) {
+		Component* pC = (*pHC).getObject<Component>();
+		if (pC->isInstanceOf<SceneNode>()) {
+			SceneNode* pSN = (SceneNode*)pC;
+			if (pSN->m_physicsIndex != -1) {
+				pSN->m_base.setPos(m_pContext->getPhysicsManager()->m_PhysicsComponents[pSN->m_physicsIndex].m_finalPos);
+			}
+		}
+	}
 }
 
 void RootSceneNode::do_GATHER_DRAWCALLS(Events::Event *pEvt)

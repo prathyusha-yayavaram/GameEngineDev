@@ -4,6 +4,7 @@
 #include "PrimeEngine/Scene/SkeletonInstance.h"
 #include "PrimeEngine/Scene/MeshInstance.h"
 #include "PrimeEngine/Scene/RootSceneNode.h"
+#include "PrimeEngine/Physics/SphereCollider.h"
 
 #include "SoldierNPC.h"
 #include "SoldierNPCAnimationSM.h"
@@ -61,6 +62,26 @@ SoldierNPC::SoldierNPC(PE::GameContext &context, PE::MemoryArena arena, PE::Hand
 	pMainSN->m_base.setV(pEvt->m_v);
 	pMainSN->m_base.setN(pEvt->m_n);
 
+	PE::Handle hSC("SphereCollider", sizeof(SphereCollider));
+	SphereCollider* pSC = new(hSC) SphereCollider(*m_pContext, m_arena, hSC);
+	pSC->m_radius = 0.5f;
+	pSC->m_centerLS = Vector3(0, 0.5, 0);
+	pSC->m_world = pMainSN->m_base;
+
+	const char* line1 = "Soldier ";
+	const char* line2 = pEvt->m_patrolWayPoint;
+
+	size_t len1 = strlen(line1);
+	size_t len2 = strlen(line2);
+
+	char* totalLine = (char*)malloc(len1 + len2 + 1);
+	if (!totalLine) abort();
+
+	memcpy(totalLine, line1, len1);
+	memcpy(totalLine + len1, line2, len2);
+	totalLine[len1 + len2] = '\0';
+
+	pMainSN->m_physicsIndex = m_pContext->getPhysicsManager()->addPhysicsComponent(totalLine, pEvt->m_pos, hSC, true, pMainSN->m_base);
 
 	RootSceneNode::Instance()->addComponent(hSN);
 

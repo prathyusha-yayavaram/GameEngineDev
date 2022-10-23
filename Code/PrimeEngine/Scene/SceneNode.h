@@ -42,6 +42,7 @@ struct SceneNode : public Component
 
 	Handle m_hComponentParent;
 	
+	int m_physicsIndex;
 
 	Matrix4x4 m_base; // local transform
 	Matrix4x4 m_worldTransform; // is calculated bnefore every draw via Events::CALULCATE_TRANSFORMATIONS

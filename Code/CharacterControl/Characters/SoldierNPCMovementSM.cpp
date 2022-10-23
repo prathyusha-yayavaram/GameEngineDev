@@ -2,9 +2,14 @@
 
 #include "PrimeEngine/Lua/LuaEnvironment.h"
 
+#include "PrimeEngine/GameObjectModel/GameObjectManager.h"
+
 #include "SoldierNPCMovementSM.h"
 #include "SoldierNPCAnimationSM.h"
 #include "SoldierNPC.h"
+
+#include "PrimeEngine/Physics/PhysicsManager.h"
+
 using namespace PE::Components;
 using namespace PE::Events;
 using namespace CharacterControl::Events;
@@ -100,23 +105,28 @@ void SoldierNPCMovementSM::do_UPDATE(PE::Events::Event *pEvt)
 			bool reached = true;
 			if (dsqr > 0.01f)
 			{
-				// not at the spot yet
-				Event_UPDATE *pRealEvt = (Event_UPDATE *)(pEvt);
-				static float speed = 1.4f;
-				float allowedDisp = speed * pRealEvt->m_frameTime;
+				
+					// not at the spot yet
+					Event_UPDATE* pRealEvt = (Event_UPDATE*)(pEvt);
+					static float speed = 1.4f;
+					float allowedDisp = speed * pRealEvt->m_frameTime;
 
-				Vector3 dir = (m_targetPostion - curPos);
-				dir.normalize();
-				float dist = sqrt(dsqr);
-				if (dist > allowedDisp)
-				{
-					dist = allowedDisp; // can move up to allowedDisp
-					reached = false; // not reaching destination yet
-				}
+					Vector3 dir = (m_targetPostion - curPos);
+					dir.normalize();
+					float dist = sqrt(dsqr);
+					if (dist > allowedDisp)
+					{
+						dist = allowedDisp; // can move up to allowedDisp
+						reached = false; // not reaching destination yet
+					}
 
-				// instantaneous turn
-				pSN->m_base.turnInDirection(dir, 3.1415f);
-				pSN->m_base.setPos(curPos + dir * dist);
+					// instantaneous turn
+					pSN->m_base.turnInDirection(dir, 3.1415f);
+
+					pSN->getGameContext()->getPhysicsManager()->m_PhysicsComponents[pSN->m_physicsIndex].m_startPos = curPos;
+					pSN->getGameContext()->getPhysicsManager()->m_PhysicsComponents[pSN->m_physicsIndex].m_endPos = curPos + dir * dist;
+					pSN->getGameContext()->getPhysicsManager()->m_PhysicsComponents[pSN->m_physicsIndex].m_base = pSN->m_base;
+					pSN->m_base.setPos(curPos + dir * dist);
 			}
 
 			if (reached)

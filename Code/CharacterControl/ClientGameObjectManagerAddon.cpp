@@ -6,6 +6,8 @@
 #include "WayPoint.h"
 #include "Tank/ClientTank.h"
 #include "CharacterControl/Client/ClientSpaceShip.h"
+#include "PrimeEngine/Physics/BoxCollider.h"
+#include "PrimeEngine/Physics/PhysicsManager.h"
 
 using namespace PE::Components;
 using namespace PE::Events;
@@ -105,7 +107,7 @@ WayPoint *ClientGameObjectManagerAddon::getWayPoint(const char *name)
 }
 
 
-void ClientGameObjectManagerAddon::createTank(int index, int &threadOwnershipMask)
+void ClientGameObjectManagerAddon::createTank(int index, int& threadOwnershipMask)
 {
 
 	//create hierarchy:
@@ -116,20 +118,30 @@ void ClientGameObjectManagerAddon::createTank(int index, int &threadOwnershipMas
 	//game object manager
 	//  TankController
 	//    scene node
-	
+
 	PE::Handle hMeshInstance("MeshInstance", sizeof(MeshInstance));
-	MeshInstance *pMeshInstance = new(hMeshInstance) MeshInstance(*m_pContext, m_arena, hMeshInstance);
+	MeshInstance* pMeshInstance = new(hMeshInstance) MeshInstance(*m_pContext, m_arena, hMeshInstance);
 
 	pMeshInstance->addDefaultComponents();
 	pMeshInstance->initFromFile("kingtiger.x_main_mesh.mesha", "Default", threadOwnershipMask);
 
 	// need to create a scene node for this mesh
 	PE::Handle hSN("SCENE_NODE", sizeof(SceneNode));
-	SceneNode *pSN = new(hSN) SceneNode(*m_pContext, m_arena, hSN);
+	SceneNode* pSN = new(hSN) SceneNode(*m_pContext, m_arena, hSN);
 	pSN->addDefaultComponents();
 
-	Vector3 spawnPos(-36.0f + 6.0f * index, 0 , 21.0f);
+	Vector3 spawnPos(-36.0f + 6.0f * index, 0, 21.0f);
 	pSN->m_base.setPos(spawnPos);
+
+	PE::Handle hBC("BoxCollider", sizeof(BoxCollider));
+	BoxCollider* pBC = new(hBC) BoxCollider(*m_pContext, m_arena, hBC);
+	Array<Vector3> m_aabb = pMeshInstance->m_hAsset.getObject<Mesh>()->m_aabb;
+	for (int i = 0; i < 8; i++) {
+		pBC->m_aabb.add(m_aabb[i]);
+	}
+	pBC->m_world = pSN->m_base;
+
+	pSN->m_physicsIndex = m_pContext->getPhysicsManager()->addPhysicsComponent("Tank", spawnPos, hBC, false, pSN->m_base);
 	
 	pSN->addComponent(hMeshInstance);
 

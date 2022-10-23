@@ -14,6 +14,9 @@
 #include "PrimeEngine/Scene/MeshInstance.h"
 #include "PrimeEngine/Scene/SkeletonInstance.h"
 
+#include "PrimeEngine/Physics/BoxCollider.h"
+#include "PrimeEngine/Physics/PhysicsManager.h"
+
 namespace PE {
 namespace Components {
 
@@ -46,6 +49,7 @@ void GameObjectManager::addDefaultComponents()
 	PE_REGISTER_EVENT_HANDLER(Event_CREATE_ANIM_SET, GameObjectManager::do_CREATE_ANIM_SET);
 
 	createGameObjectTableIfDoesntExist();
+	m_physicsComponents.reset(1000);
 }
 
 // Individual events -------------------------------------------------------
@@ -326,6 +330,17 @@ void GameObjectManager::do_CREATE_MESH(Events::Event *pEvt)
 				pSN->m_base.setU(pRealEvent->m_u);
 				pSN->m_base.setV(pRealEvent->m_v);
 				pSN->m_base.setN(pRealEvent->m_n);
+
+				PE::Handle hBC("BoxCollider", sizeof(BoxCollider));
+				BoxCollider* pBC = new(hBC) BoxCollider(*m_pContext, m_arena, hBC);
+				Array<Vector3> m_aabb = pMeshInstance->m_hAsset.getObject<Mesh>()->m_aabb;
+				for (int i = 0; i < 8; i++) {
+					pBC->m_aabb[i] = m_aabb[i];
+				}
+				pBC->m_world = pSN->m_base;
+
+				pSN->m_physicsIndex = m_pContext->getPhysicsManager()->addPhysicsComponent(pRealEvent->m_meshFilename, pRealEvent->m_pos, hBC, false, pSN->m_base);
+
 			}
 			else
 			{
@@ -353,6 +368,7 @@ void GameObjectManager::do_CREATE_MESH(Events::Event *pEvt)
 				pSN->m_base.setU(pRealEvent->m_u);
 				pSN->m_base.setV(pRealEvent->m_v);
 				pSN->m_base.setN(pRealEvent->m_n);
+				m_physicsComponents.add(pSN);
 			}
 		}
 	}

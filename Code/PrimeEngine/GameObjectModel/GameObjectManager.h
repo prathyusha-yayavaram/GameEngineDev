@@ -64,6 +64,7 @@ struct GameObjectManager : public Component, public Networkable
 	
 	Handle m_lastAddedObjHandle;
 	Handle m_lastAddedSkelInstanceHandle;
+	Array<SceneNode *> m_physicsComponents;
 
 	private:
 		LuaGlue::LuaReference m_luaGameObjectTableRef;

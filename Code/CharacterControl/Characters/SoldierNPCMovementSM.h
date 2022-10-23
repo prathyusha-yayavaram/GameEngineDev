@@ -36,6 +36,20 @@ struct SoldierNPCMovementSM_Event_TARGET_REACHED : public PE::Events::Event {
 	{}
 };
 
+struct EVENT_PHYSICS_START : public PE::Events::Event {
+	PE_DECLARE_CLASS(EVENT_PHYSICS_START);
+
+	EVENT_PHYSICS_START()
+	{}
+};
+
+struct EVENT_PHYSICS_END : public PE::Events::Event {
+	PE_DECLARE_CLASS(EVENT_PHYSICS_END);
+
+	EVENT_PHYSICS_END()
+	{}
+};
+
 };
 namespace Components {
 

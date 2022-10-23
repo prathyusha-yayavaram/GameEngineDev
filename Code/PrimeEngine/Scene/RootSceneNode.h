@@ -42,7 +42,10 @@ struct RootSceneNode : public SceneNode
 	// this method will set up some global gpu constants like game time, frame time
 	// it will also set light source gpu constants
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_GATHER_DRAWCALLS);
+	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_PHYSICS_END);
+
 	virtual void do_GATHER_DRAWCALLS(Events::Event *pEvt);
+	virtual void RootSceneNode::do_PHYSICS_END(Events::Event* pEvt);
 
 	static RootSceneNode *Instance() {return s_hInstance.getObject<RootSceneNode>();}
 	static RootSceneNode *TitleInstance() {return s_hTitleInstance.getObject<RootSceneNode>();}

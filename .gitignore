@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Code/.vs/PEWorkspace-win32d3d9/v16
+/build
+/build-intermediate/x32/Debug
+/Tools

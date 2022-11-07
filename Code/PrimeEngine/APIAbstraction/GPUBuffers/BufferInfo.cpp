@@ -183,6 +183,7 @@ void PEVertexAttributeInfo::elementSemanticToApiSemantic(PESemanticType sem, int
 		else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
 	case PESemanticType_TexCoord:
 		if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD);out_semOrder = 0;return;}
+		else if (semOrder == 5) { out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD); out_semOrder = 5; return; }
 		else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
 	case PESemanticType_Color:
 		if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_COLOR);out_semOrder = 0;return;}

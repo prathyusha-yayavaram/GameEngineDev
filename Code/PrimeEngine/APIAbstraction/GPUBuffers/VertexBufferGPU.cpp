@@ -637,7 +637,7 @@ void VertexBufferGPU::createGPUBuffer(PositionBufferCPU &vb, NormalBufferCPU &nb
 	setAPIValues();
 }
 
-void VertexBufferGPU::createGPUBufferFromSource_DetailedMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, NormalBufferCPU &nb, TangentBufferCPU &tb)
+void VertexBufferGPU::createGPUBufferFromSource_DetailedMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, TexCoordBufferCPU &tscb, NormalBufferCPU &nb, TangentBufferCPU &tb)
 {
 //OGL is still using old way of forwarding all source buffers to low level helper implementation
 #if APIABSTRACTION_OGL
@@ -651,16 +651,18 @@ void VertexBufferGPU::createGPUBufferFromSource_DetailedMesh(PositionBufferCPU &
 	m_pBufferSetInfo = &VertexBufferGPUManager::Instance()->m_vertexBufferInfos[PEVertexFormatLayout_DetailedMesh_B0__P0f3_B1__TC0f2_B2__N0f3_B3__T0f3];
 #else
 	PositionBufferCPU res(*m_pContext, m_arena);
-	res.m_values.reset((vb.m_values.m_size / 3) * (3 + 2 + 3 + 3));
+	res.m_values.reset((vb.m_values.m_size / 3) * (3 + 2 + 2 + 3 + 3));
 
-	PrimitiveTypes::UInt32 itcval = 0;
+	PrimitiveTypes::UInt32 itcval = 0, istcval = 0;
 
 	for (PrimitiveTypes::UInt32 iv = 0; iv < vb.m_values.m_size / 3; iv++)
 	{
-		PrimitiveTypes::Float32 x,y,z, u, v, nx, ny, nz, tx, ty, tz;
+		PrimitiveTypes::Float32 x,y,z, u, v, nx, ny, nz, tx, ty, tz, su, sv;
 		PrimitiveTypes::UInt32 curInex = iv * 3;
 		x = vb.m_values[curInex]; y = vb.m_values[curInex + 1]; z = vb.m_values[curInex + 2];
-		u = tcb.m_values[itcval++]; v = tcb.m_values[itcval++]; nx = nb.m_values[curInex];
+		u = tcb.m_values[itcval++]; v = tcb.m_values[itcval++];
+		su = tscb.m_values[istcval++]; sv = tscb.m_values[istcval++];
+		nx = nb.m_values[curInex];
 		ny = nb.m_values[curInex + 1]; nz = nb.m_values[curInex + 2];
 		tx = tb.m_values[curInex]; ty = tb.m_values[curInex + 1]; tz = tb.m_values[curInex + 2];
 
@@ -668,9 +670,10 @@ void VertexBufferGPU::createGPUBufferFromSource_DetailedMesh(PositionBufferCPU &
 		res.m_values.add(u); res.m_values.add(v);
 		res.m_values.add(nx); res.m_values.add(ny); res.m_values.add(nz);
 		res.m_values.add(tx); res.m_values.add(ty); res.m_values.add(tz);
+		res.m_values.add(su); res.m_values.add(sv);
 	}
 
-	internalCreateGPUBufferFromCombined(res, sizeof(PrimitiveTypes::Float32) * (3 + 2 + 3 + 3));
+	internalCreateGPUBufferFromCombined(res, sizeof(PrimitiveTypes::Float32) * (3 + 2 + 2 + 3 + 3));
 	res.m_values.reset(0);
 
 	m_pBufferSetInfo = &VertexBufferGPUManager::Instance()->m_vertexBufferInfos[PEVertexFormatLayout_DetailedMesh_B0__P0f3_TC0f2_N0f3_T0f3];

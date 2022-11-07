@@ -1,6 +1,7 @@
 #define NOMINMAX
 #include "CameraManager.h"
 #include "../Lua/LuaEnvironment.h"
+#include "Wind.h"
 namespace PE {
 namespace Components{
 
@@ -22,6 +23,23 @@ CameraManager::CameraManager(PE::GameContext &context, PE::MemoryArena arena, Ha
 	pCamSN->m_base.setPos(Vector3(0.0f,0.0f,-5.0f));
 	pCamSN->m_base.setPos(Vector3(-5.0f,4.0f,-7.0f));
 	pCamSN->m_base.turnInDirection(Vector3(0.0f, 1.0f, -1.1f) - Vector3(-5.0f,4.0f,-7.0f));
+
+	//Wind
+	PE::Handle hWind("WIND", sizeof(Wind));
+	Wind* pWind = new(hWind) Wind(*m_pContext, m_arena,
+		hWind, Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 1),
+		Vector4(1.5, 1, 0, 0), // ambient
+		Vector4(0/5, 0.5, 0.5, 1), //diffuse
+		Vector4(0, 0, 0, 1), //spec
+		Vector3(0.05, 0.05, 0.05), //att
+		1.0, //spot
+		40.0, //range
+		false, //isShadowCaster
+		0 //spotlight
+	);
+	pWind->addDefaultComponents();
+	RootSceneNode::Instance()->m_winds.add(hWind);
+	pCamSN->addComponent(hWind);
 }
 
 void CameraManager::Construct(PE::GameContext &context, PE::MemoryArena arena)

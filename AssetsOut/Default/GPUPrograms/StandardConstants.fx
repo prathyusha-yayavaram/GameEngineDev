@@ -14,6 +14,17 @@ struct Light // 7 registers total
 	float4	xRange_yType_zw;//type: 0 = point, 1 = directional, 2 = spot
 };
 
+struct Wind // 7 registers total
+{
+	float4	xyzPos_w; // xyz = pos, w = padding
+	float4	xyzDir_w; // xyz = dir, w = padding
+	float4	ambient;
+	float4	diffuse;
+	float4	spec;
+	float4	xyzAtt_wSpotPwr; // xyz = attenuation, w = spot power
+	float4	xRange_yType_zw;//type: 0 = point, 1 = directional, 2 = spot
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 // Per-frame
 ///////////////////////////////////////////////////////////////////////////////
@@ -88,5 +99,16 @@ BEGIN_BUFFER  // total registers: 4 absoulte: [159-162]
 	API_UNIFORM_CONSTANT float4 gxyzVEmissive_wVShininess            API_UNIFORM_CONSTANT_REGISTER_REG(3, 162);
 END_BUFFER
 
-#endif // file guard
 
+////////////////////////////////////////////////////////////////////////////////
+// Wind (3 wind sources)
+////////////////////////////////////////////////////////////////////////////////
+#undef API_BUFFER_INDEX
+#define API_BUFFER_INDEX 4
+BEGIN_BUFFER  
+	API_UNIFORM_CONSTANT Wind gWind0                            API_UNIFORM_CONSTANT_REGISTER_REG(0, 163);
+	API_UNIFORM_CONSTANT Wind gWind1                            API_UNIFORM_CONSTANT_REGISTER_REG(7, 170);
+	API_UNIFORM_CONSTANT Wind gWind2                            API_UNIFORM_CONSTANT_REGISTER_REG(14, 177);
+END_BUFFER
+
+#endif // file guard

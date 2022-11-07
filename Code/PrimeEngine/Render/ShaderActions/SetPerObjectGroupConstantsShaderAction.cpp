@@ -24,10 +24,12 @@ void SetPerObjectGroupConstantsShaderAction::bindToPipeline(Effect *pCurEffect /
 		Effect::setConstantBuffer(pDevice, pDeviceContext, s_pBuffer, 1, &m_data, sizeof(Data));
 	#elif APIABSTRACTION_D3D9
     
+	int float4PerWind = 7;
+	int float4PerWinds = float4PerWind * NUM_WIND_SOURCES_DATAS;
         int float4PerLight = 7;
         int float4PerLights = float4PerLight * NUM_LIGHT_SOURCES_DATAS; // note shaders are hardcoded to allocate registers in shader files. if these valeus are changed, shaders have to be changed too
     
-        int totalFloat4 = (21 + float4PerLights);
+        int totalFloat4 = (21 + float4PerLights + float4PerWinds);
         assert(sizeof(m_data) == totalFloat4 * 4 * sizeof(float)); // the data is synced to take totalFloat4 float4 registers on GPU
 		
 		D3D9Renderer *pD3D9Renderer = static_cast<D3D9Renderer *>(m_pContext->getGPUScreen());
@@ -35,6 +37,9 @@ void SetPerObjectGroupConstantsShaderAction::bindToPipeline(Effect *pCurEffect /
 		
 		pDevice->SetVertexShaderConstantF(1, (const float *)(&m_data), totalFloat4);
 		pDevice->SetPixelShaderConstantF(1, (const float *)(&m_data), totalFloat4);
+		int totalFloat4Winds = { float4PerWinds };
+		pDevice->SetVertexShaderConstantF(163, (const float*)(&m_data.gWinds), totalFloat4Winds);
+		pDevice->SetPixelShaderConstantF(163, (const float*)(&m_data.gWinds), totalFloat4Winds);
 	#elif APIABSTRACTION_OGL
 		
 		if (pCurEffect)

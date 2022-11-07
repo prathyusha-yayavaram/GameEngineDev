@@ -11,6 +11,7 @@ struct DETAILED_MESH_VS_IN
 {
     float3 iPosL      API_SEMANTIC(VSIN_POSITION);
     float2 iTexCoord  API_SEMANTIC(TEXCOORD0);
+    float2 iSecTexCoord  API_SEMANTIC(TEXCOORD5);
     float3 iNormal    API_SEMANTIC(VSIN_NORMAL);
     float3 iTangent   API_SEMANTIC(VSIN_TANGENT);
 };
@@ -105,6 +106,7 @@ struct DETAILED_MESH_SHADOWED_PS_IN
     float4 iPosH     API_SEMANTIC(PIPELINE_POSITION);
     float3 iPosW     API_SEMANTIC(PSIN_EXTRA_POSITION);
     float2 iTexCoord API_SEMANTIC(TEXCOORD0);
+    float2 iSecTexCoord API_SEMANTIC(TEXCOORD5);
     float3 iNormalW  API_SEMANTIC(PIPELINE_NORMAL);
     float4 iProjTexCoord API_SEMANTIC(PSIN_PROJECTION);
     float3 iTangentW API_SEMANTIC(PSIN_TANGENT);

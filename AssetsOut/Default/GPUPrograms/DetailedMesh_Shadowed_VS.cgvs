@@ -7,7 +7,7 @@
 
 DETAILED_MESH_SHADOWED_PS_IN DetailedMesh_Shadowed_VS(DETAILED_MESH_VS_IN vIn)
 {
-    DETAILED_MESH_SHADOWED_PS_IN vOut;
+    DETAILED_MESH_SHADOWED_PS_IN vOut = (DETAILED_MESH_SHADOWED_PS_IN) 0;
 	float3 pos = vIn.iPosL;
 	
 	Matrix WVP = gWVP;
@@ -18,7 +18,25 @@ DETAILED_MESH_SHADOWED_PS_IN DetailedMesh_Shadowed_VS(DETAILED_MESH_VS_IN vIn)
     vOut.iPosW =  mul(make_float4(pos, 1.0), W).xyz;
     vOut.iTangentW = mul(make_float4(vIn.iTangent, 1.0), W).xyz;
     vOut.iTexCoord = vIn.iTexCoord;
+    vOut.iSecTexCoord = vIn.iSecTexCoord;
     vOut.iProjTexCoord = mul(make_float4(vOut.iPosW, 1.0), gLightWVP);
+
+    float4 iPosW = make_float4(vOut.iPosW, 0);
+    float distFromCamera0 = distance(iPosW, gWind0.xyzPos_w);
+    float invDistance0 = 1 / distFromCamera0;
+    float2 new_iPosW0 = (invDistance0 * vOut.iSecTexCoord.xy * gWind0.xyzDir_w.xz * gWind0.ambient.x);
+    vOut.iPosW.xz += new_iPosW0;
+
+    float distFromCamera1 = distance(iPosW, gWind1.xyzPos_w);
+    float invDistance1 = 1 / distFromCamera1;
+    float2 new_iPosW1 = (invDistance1 * vOut.iSecTexCoord.xy * gWind1.xyzDir_w.xz * gWind0.ambient.x);
+    vOut.iPosW.xz += new_iPosW1;
+
+    float distFromCamera2 = distance(iPosW, gWind2.xyzPos_w);
+    float invDistance2 = 1 / distFromCamera2;
+    float2 new_iPosW2 = (invDistance2 * vOut.iSecTexCoord.xy * gWind2.xyzDir_w.xz * gWind0.ambient.x);
+    vOut.iPosW.xz += new_iPosW2;
+    vOut.iPosH = mul(make_float4(vOut.iPosW, 1.0), gViewProj);
     return vOut;
 }
 

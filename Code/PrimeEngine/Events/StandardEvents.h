@@ -194,6 +194,32 @@ struct Event_CREATE_LIGHT : public Event {
 	PEUUID m_peuuid;
 };
 
+struct Event_CREATE_WIND : public Event {
+	PE_DECLARE_CLASS(Event_CREATE_WIND);
+
+	Event_CREATE_WIND()
+	{}
+	virtual ~Event_CREATE_WIND() {}
+
+	// override SetLuaFunctions() since we are adding custom Lua interface
+	static void SetLuaFunctions(PE::Components::LuaEnvironment* pLuaEnv, lua_State* luaVM);
+
+	// Lua interface prefixed with l_
+	static int l_Construct(lua_State* luaVM);
+
+	Vector3 m_pos, m_u, m_v, m_n; // orientation
+	Vector4	m_ambient;
+	Vector4	m_diffuse;
+	Vector4	m_spec;
+	Vector3	m_att;
+	float	m_spotPower;
+	float	m_range;
+	bool m_isShadowCaster;
+	float	m_type; //0 = point, 1 = directional, 2 = spot
+
+	PEUUID m_peuuid;
+};
+
 struct Event_CREATE_MESH : public Event {
 	PE_DECLARE_CLASS(Event_CREATE_MESH);
 

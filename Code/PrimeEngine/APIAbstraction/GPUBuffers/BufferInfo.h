@@ -130,7 +130,7 @@ struct PEVertexAttributeBufferInfo
 	PEVertexAttributeBufferInfo();
 	void setAPIValues();
 
-	static const int MAX_ATTRIBUTES = 16;
+	static const int MAX_ATTRIBUTES = 20;
 	PEVertexAttributeInfo m_attributeInfos[MAX_ATTRIBUTES];
 	int m_numAttributes;
 };

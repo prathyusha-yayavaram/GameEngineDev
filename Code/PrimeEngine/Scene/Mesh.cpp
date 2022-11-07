@@ -366,7 +366,8 @@ EPEVertexFormat Mesh::updateGeoFromMeshCPU_needsRC(MeshCPU &mcpu, int &threadOwn
 		{
 			m_hVertexBufferGPU = VertexBufferGPUManager::Instance()->createGPUBufferFromVBufTCBufNBufTBuf(
 				mcpu.m_hPositionBufferCPU, 
-				mcpu.m_hTexCoordBufferCPU, 
+				mcpu.m_hTexCoordBufferCPU,
+				mcpu.m_hSecondTexCoordBufferCPU,
 				mcpu.m_hNormalBufferCPU,
 				mcpu.m_hTangentBufferCPU,
 				!mcpu.m_manualBufferManagement);

@@ -13,6 +13,8 @@
 #include "PrimeEngine/Scene/Skeleton.h"
 #include "PrimeEngine/Scene/MeshInstance.h"
 #include "PrimeEngine/Scene/SkeletonInstance.h"
+#include "PrimeEngine/Scene/Wind.h"
+
 
 namespace PE {
 namespace Components {
@@ -41,6 +43,7 @@ void GameObjectManager::addDefaultComponents()
 	PE_REGISTER_EVENT_HANDLER(Event_CONSTRUCT_SOUND, GameObjectManager::do_CONSTRUCT_SOUND);
 
 	PE_REGISTER_EVENT_HANDLER(Event_CREATE_LIGHT, GameObjectManager::do_CREATE_LIGHT);
+	PE_REGISTER_EVENT_HANDLER(Event_CREATE_WIND, GameObjectManager::do_CREATE_LIGHT);
 	PE_REGISTER_EVENT_HANDLER(Event_CREATE_MESH, GameObjectManager::do_CREATE_MESH);
 	PE_REGISTER_EVENT_HANDLER(Event_CREATE_SKELETON, GameObjectManager::do_CREATE_SKELETON);
 	PE_REGISTER_EVENT_HANDLER(Event_CREATE_ANIM_SET, GameObjectManager::do_CREATE_ANIM_SET);
@@ -136,6 +139,91 @@ void GameObjectManager::do_CREATE_LIGHT(Events::Event *pEvt)
 		pLight->m_cbuffer.spotPower = pRealEvt->m_spotPower;
 		pLight->m_cbuffer.range = pRealEvt->m_range;
 		pLight->isTheShadowCaster = pRealEvt->m_isShadowCaster;
+	}
+
+	// pop the game object table
+	m_pContext->getLuaEnvironment()->pop();
+}
+
+void GameObjectManager::do_CREATE_WIND(Events::Event* pEvt)
+{
+	Event_CREATE_WIND* pRealEvt = (Event_CREATE_WIND*)(pEvt);
+
+	bool haveObject = false;
+	Handle exisitngObject;
+
+	putGameObjectTableIOnStack();
+
+	if (!pRealEvt->m_peuuid.isZero())
+	{
+		// have a valid peeuid for the object. need to check if have one already
+
+		haveObject = m_pContext->getLuaEnvironment()->checkTableValueByPEUUIDFieldExists(pRealEvt->m_peuuid);
+		if (haveObject)
+		{
+			LuaEnvironment::popHandleFromTableOnStackAndPopTable(m_pContext->getLuaEnvironment()->L, exisitngObject);
+			m_lastAddedObjHandle = exisitngObject;
+		}
+		else
+		{
+			// pop nil
+			m_pContext->getLuaEnvironment()->pop();
+		}
+	}
+
+	if (!haveObject)
+	{
+		Handle hWind("WIND", sizeof(Wind));
+
+		Wind* pWind = new(hWind) Wind(
+			*m_pContext,
+			m_arena,
+			hWind,
+			pRealEvt->m_pos, //Position
+			pRealEvt->m_u,
+			pRealEvt->m_v,
+			pRealEvt->m_n, //Direction (z-axis)
+			pRealEvt->m_ambient, //Ambient
+			pRealEvt->m_diffuse, //Diffuse
+			pRealEvt->m_spec, //Specular
+			pRealEvt->m_att, //Attenuation (x, y, z)
+			pRealEvt->m_spotPower, // Spot Power
+			pRealEvt->m_range, //Range
+			pRealEvt->m_isShadowCaster, //Whether or not it casts shadows
+			(PrimitiveTypes::Int32)(pRealEvt->m_type) //0 = point, 1 = directional, 2 = spot
+		);
+		pWind->addDefaultComponents();
+
+		RootSceneNode::Instance()->m_winds.add(hWind);
+		RootSceneNode::Instance()->addComponent(hWind);
+
+		m_pContext->getLuaEnvironment()->pushHandleAsFieldAndSet(pRealEvt->m_peuuid, hWind);
+		m_lastAddedObjHandle = hWind;
+	}
+	else
+	{
+		// already have this object
+
+		// need to reset the orientation
+		// and light source settings
+		Wind* pWind = exisitngObject.getObject<Wind>();
+
+		pWind->m_base.setPos(pRealEvt->m_pos);
+		pWind->m_base.setU(pRealEvt->m_u);
+		pWind->m_base.setV(pRealEvt->m_v);
+		pWind->m_base.setN(pRealEvt->m_n);
+
+
+		pWind->m_cbuffer.pos = pWind->m_base.getPos();
+		pWind->m_cbuffer.dir = pWind->m_base.getN();
+
+		pWind->m_cbuffer.ambient = pRealEvt->m_ambient;
+		pWind->m_cbuffer.diffuse = pRealEvt->m_diffuse;
+		pWind->m_cbuffer.spec = pRealEvt->m_spec;
+		pWind->m_cbuffer.att = pRealEvt->m_att;
+		pWind->m_cbuffer.spotPower = pRealEvt->m_spotPower;
+		pWind->m_cbuffer.range = pRealEvt->m_range;
+		pWind->isTheShadowCaster = pRealEvt->m_isShadowCaster;
 	}
 
 	// pop the game object table

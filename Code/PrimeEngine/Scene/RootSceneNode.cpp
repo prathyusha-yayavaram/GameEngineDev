@@ -3,6 +3,7 @@
 #include "RootSceneNode.h"
 
 #include "Light.h"
+#include "Wind.h"
 #include "DrawList.h"
 
 #include "PrimeEngine/APIAbstraction/Effect/EffectManager.h"
@@ -111,6 +112,10 @@ void RootSceneNode::do_GATHER_DRAWCALLS(Events::Event *pEvt)
 				continue;
 			psvPerObjectGroup->m_data.gLights[iDestLight] = pLight->m_cbuffer;
 			iDestLight++;
+		}
+		for (int i = 0; i < pRoot->m_winds.m_size; i++) {
+			Wind* pWind = pRoot->m_winds[i].getObject<Wind>();
+			psvPerObjectGroup->m_data.gWinds[i] = pWind->m_cbuffer;
 		}
 	}
 }

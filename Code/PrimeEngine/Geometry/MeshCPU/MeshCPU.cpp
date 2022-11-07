@@ -51,7 +51,6 @@ void MeshCPU::ReadMesh(const char *filename, const char *package, const char *ta
 	if (StringOps::strcmp(tcfilename, "none") != 0)
 	{
 		m_hTexCoordBufferCPU = PositionBufferCPUManager::Instance()->ReadTexCoordBuffer(tcfilename, package, tag);
-		
 	}
 	else
 	{
@@ -59,6 +58,24 @@ void MeshCPU::ReadMesh(const char *filename, const char *package, const char *ta
 		m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
 		TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
 		ptcb->createMockCPUBuffer(m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_values.m_size / 3);
+	}
+
+	m_hSecondTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	TexCoordBufferCPU* pstcb = new(m_hSecondTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
+
+	Array<PrimitiveTypes::Float32> mValuesPosBuf = m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_values;
+	PrimitiveTypes::Float32 minY = mValuesPosBuf[1], maxY = mValuesPosBuf[1];
+	for (PrimitiveTypes::UInt32 iv = 0; iv < mValuesPosBuf.m_size / 3; iv++)
+	{
+		minY = min(minY, mValuesPosBuf[iv * 3 + 1]);
+		maxY = max(maxY, mValuesPosBuf[iv * 3 + 1]);
+	}
+
+	pstcb->m_values.reset(2 * mValuesPosBuf.m_size / 3);
+	for (PrimitiveTypes::UInt32 iv = 0; iv < mValuesPosBuf.m_size / 3; iv++)
+	{
+		pstcb->m_values.add((mValuesPosBuf[iv * 3 + 1] - minY) / (maxY - minY));
+		pstcb->m_values.add((mValuesPosBuf[iv * 3 + 1] - minY) / (maxY - minY));
 	}
 
 	// Normal buffer filename
@@ -115,9 +132,16 @@ void MeshCPU::ReadMesh(const char *filename, const char *package, const char *ta
 		{
 			m_hAdditionalTexCoordBuffersCPU.reset(16);
 		}
+		if (m_hAdditionalSecondTexCoordBuffersCPU.m_capacity == 0)
+		{
+			m_hAdditionalSecondTexCoordBuffersCPU.reset(16);
+		}
 		
 		Handle hAdditionalTexCoordBufferCPU = TexCoordBufferCPUManager::Instance()->ReadTexCoordBuffer(optionalLine, package, tag);
 		m_hAdditionalTexCoordBuffersCPU.add(hAdditionalTexCoordBufferCPU);
+
+		Handle hAdditionalSecondTexCoordBufferCPU = TexCoordBufferCPUManager::Instance()->ReadTexCoordBuffer(optionalLine, package, tag);
+		m_hAdditionalSecondTexCoordBuffersCPU.add(hAdditionalSecondTexCoordBufferCPU);
 	
 		f.nextNonEmptyLine(optionalLine, 255);
 		if (m_hAdditionalNormalBuffersCPU.m_capacity == 0)
@@ -147,8 +171,8 @@ void MeshCPU::createEmptyMesh()
 	ColorBufferCPU *pcb = new(m_hColorBufferCPU) ColorBufferCPU(*m_pContext, m_arena);
 	pcb->createEmptyCPUBuffer();
 
-	//m_hTexCoordBufferCPU = Handle(TEXCOORD_BUFFER_CPU, sizeof(TexCoordBufferCPU));
-	//TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU();
+	//m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	//TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
 	//ptcb->createBillboardCPUBuffer();
 
 	//m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
@@ -172,9 +196,9 @@ void MeshCPU::createBillboardMesh()
 	IndexBufferCPU *pib = new(m_hIndexBufferCPU) IndexBufferCPU(*m_pContext, m_arena);
 	pib->createBillboardCPUBuffer();
 	
-	//m_hTexCoordBufferCPU = Handle(TEXCOORD_BUFFER_CPU, sizeof(TexCoordBufferCPU));
-	//TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU();
-	//ptcb->createBillboardCPUBuffer();
+	m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	TexCoordBufferCPU* ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
+	ptcb->createBillboardCPUBuffer();
 
 	m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
 	NormalBufferCPU *pnb = new(m_hNormalBufferCPU) NormalBufferCPU(*m_pContext, m_arena);
@@ -201,6 +225,10 @@ void MeshCPU::createBillboardMeshWithColorTexture(const char *textureFilename, c
 	TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
 	ptcb->createBillboardCPUBuffer();
 
+	m_hSecondTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	TexCoordBufferCPU* pstcb = new(m_hSecondTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
+	pstcb->createBillboardCPUBuffer();
+
 	m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
 	NormalBufferCPU *pnb = new(m_hNormalBufferCPU) NormalBufferCPU(*m_pContext, m_arena);
 	pnb->createBillboardCPUBuffer();
@@ -226,6 +254,10 @@ void MeshCPU::createBillboardMeshWithColorGlowTextures(const char *colorTextureF
 	m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
 	TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
 	ptcb->createBillboardCPUBuffer();
+
+	m_hSecondTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	TexCoordBufferCPU* pstcb = new(m_hSecondTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
+	pstcb->createBillboardCPUBuffer();
 
 	m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
 	NormalBufferCPU *pnb = new(m_hNormalBufferCPU) NormalBufferCPU(*m_pContext, m_arena);

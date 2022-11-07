@@ -38,8 +38,8 @@ if [ "$OSTYPE" = "$WINNAME" ] ; then
     alias premake-scripts=$(cygpath ${PREMAKE_PATH})
 	#pepython.bat is a script that runs xbox environment setup and then launches python
 	alias pepython="cygstart pepython.bat"
-	export MAYA_DIR="C:\\Program Files\\Autodesk\\Maya2014"
-    export VSDIR="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE"
+	export MAYA_DIR="C:\\Program Files\\Autodesk\\Maya2019"
+    export VSDIR="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE"
 else
 	export PREMAKE_PATH=${PYENGINE_WORKSPACE_DIR}${sep}External${sep}CompiledSource${sep}"premake-dev-iphone-xcode4-master"${sep}src
 	export PATH=$PATH:${PYENGINE_WORKSPACE_DIR}${sep}External${sep}CompiledSource${sep}"bin-osx"${sep}"premake-dev-iphone-xcode-master"${sep}debug

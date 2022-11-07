@@ -17,7 +17,19 @@ float4 DetailedMesh_Shadowed_A_Glow_PS(DETAILED_MESH_SHADOWED_PS_IN pIn)
 	return originalColor;
 	#endif
 
-	//return make_float4(pIn.iTexCoord.xy, 0, 0);
+	//return make_float4(pIn.iSecTexCoord.xy, 0, 0);
+	float4 iPosW = make_float4(pIn.iPosW, 0);
+	float distFromCamera0 = distance(iPosW, gWind0.xyzPos_w);
+	float invDistance0 = 1 / distFromCamera0;
+	float distFromCamera1 = distance(iPosW, gWind1.xyzPos_w);
+	float invDistance1 = 1 / distFromCamera1;
+	float distFromCamera2 = distance(iPosW, gWind2.xyzPos_w);
+	float invDistance2 = 1 / distFromCamera2;
+	//return make_float4(invDistance0, invDistance1, invDistance2, 0);
+	float4 d = make_float4(pIn.iPosW, 0);
+	float dist = distance(gWind2.xyzDir_w, d);
+	float invDist = 1 / dist;
+	//return make_float4(invDist, 0, 0, 0);
 	//return make_float4(originalColor.xyz, 0);
 
 	float3 perPixelNormal = pIn.iNormalW;

@@ -39,6 +39,9 @@ struct GameObjectManager : public Component, public Networkable
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_CREATE_LIGHT);
 	void do_CREATE_LIGHT(Events::Event *pEvt);
 
+	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_CREATE_WIND);
+	void do_CREATE_WIND(Events::Event* pEvt);
+
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_CREATE_SKELETON);
 	void do_CREATE_SKELETON(Events::Event *pEvt);
 

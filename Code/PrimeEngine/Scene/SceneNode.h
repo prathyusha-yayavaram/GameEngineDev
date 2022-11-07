@@ -50,6 +50,7 @@ struct SceneNode : public Component
 
 	static SceneNode *s_pRootSceneNode;
 	Array<Handle> m_lights;
+	Array<Handle> m_winds;
 }; // class SceneNode
 
 struct JointSceneNode : public SceneNode

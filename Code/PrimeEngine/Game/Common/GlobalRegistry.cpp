@@ -3,7 +3,6 @@
 #include "PrimeEngine/Scene/SkeletonInstance.h"
 #include "GlobalRegistry.h"
 
-
 namespace PE {
 
 bool setLuaMetaDataOnly = 0;
@@ -39,6 +38,7 @@ void Register(PE::Components::LuaEnvironment *pLuaEnv, PE::GlobalRegistry *pRegi
 					PE::Components::CameraManager::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Components::Log::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Components::Light::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
+					PE::Components::Wind::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Components::SceneNode::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 						PE::Components::RootSceneNode::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 						PE::Components::CameraSceneNode::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
@@ -95,6 +95,7 @@ void Register(PE::Components::LuaEnvironment *pLuaEnv, PE::GlobalRegistry *pRegi
 					PE::Events::Event_PLAY_ANIMATION::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Events::Event_IK_REPORT::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Events::Event_CREATE_LIGHT::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
+					PE::Events::Event_CREATE_WIND::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Events::Event_CREATE_MESH::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Events::Event_CREATE_SKELETON::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 					PE::Events::Event_CREATE_ANIM_SET::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);

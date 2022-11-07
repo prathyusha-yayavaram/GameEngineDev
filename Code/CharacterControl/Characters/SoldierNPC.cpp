@@ -10,6 +10,7 @@
 #include "SoldierNPCMovementSM.h"
 #include "SoldierNPCBehaviorSM.h"
 
+#include "PrimeEngine/Scene/Wind.h"
 
 using namespace PE;
 using namespace PE::Components;
@@ -140,6 +141,23 @@ SoldierNPC::SoldierNPC(PE::GameContext &context, PE::MemoryArena arena, PE::Hand
 				
 		pMainSN->addComponent(hSN);
 	}
+
+	//Wind component
+	PE::Handle hWind("WIND", sizeof(Wind));
+	Wind* pWind = new(hWind) Wind(*m_pContext, m_arena,
+		hWind, Vector3(0,0,0), Vector3(0,0,0), Vector3(0,0,0), Vector3(0,0,1),
+		Vector4(2.5, 0, 1, 0.5), // ambient
+		Vector4(1, 1, 1, 1), //diffuse
+		Vector4(0.5, 0.5, 0.5, 1), //spec
+		Vector3(0.05, 0.05, 0.05), //att
+		1.0, //spot
+		20.0, //range
+		false, //isShadowCaster
+		2 //spotlight
+	);
+	pWind->addDefaultComponents();
+	RootSceneNode::Instance()->m_winds.add(hWind);
+	pMainSN->addComponent(hWind);
 
 	m_pContext->getGPUScreen()->ReleaseRenderContextOwnership(pEvt->m_threadOwnershipMask);
 	

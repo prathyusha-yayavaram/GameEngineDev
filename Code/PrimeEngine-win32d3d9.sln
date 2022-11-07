@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrimeEngine-win32d3d9", "PrimeEngine-win32d3d9.vcxproj", "{0C66E244-78D2-9D3F-41C6-359DADF1BFA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C66E244-78D2-9D3F-41C6-359DADF1BFA7}.Debug|x86.ActiveCfg = Debug|Win32
+		{0C66E244-78D2-9D3F-41C6-359DADF1BFA7}.Debug|x86.Build.0 = Debug|Win32
+		{0C66E244-78D2-9D3F-41C6-359DADF1BFA7}.Release|x86.ActiveCfg = Release|Win32
+		{0C66E244-78D2-9D3F-41C6-359DADF1BFA7}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96A5C1AF-6C5A-44D3-BED1-2BA8550CC885}
+	EndGlobalSection
+EndGlobal

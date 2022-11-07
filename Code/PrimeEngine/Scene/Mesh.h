@@ -70,6 +70,8 @@ struct Mesh : public Component
 	// Member variables --------------------------------------------------------
 	//Handle m_hVertexBufferGPU;
 	Handle m_hTexCoordBufferCPU;
+
+	Handle m_hSecondTexCoordBufferCPU;
 	
 	Handle m_hIndexBufferGPU;
 	

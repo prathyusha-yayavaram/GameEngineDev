@@ -218,6 +218,110 @@ int Event_CREATE_LIGHT::l_Construct(lua_State* luaVM)
 	return 1;
 }
 
+//////////////////////////////////////////////////////////////////////////
+// Event_CREATE_WIND
+//////////////////////////////////////////////////////////////////////////
+PE_IMPLEMENT_CLASS1(Event_CREATE_WIND, Event);
+
+void Event_CREATE_WIND::SetLuaFunctions(PE::Components::LuaEnvironment* pLuaEnv, lua_State* luaVM)
+{
+	static const struct luaL_Reg l_Event_CREATE_WIND[] = {
+		{"Construct", l_Construct},
+		{NULL, NULL} // sentinel
+	};
+
+	// register the functions in current lua table which is the table for Event_CREATE_LIGHT
+	luaL_register(luaVM, 0, l_Event_CREATE_WIND);
+}
+
+int Event_CREATE_WIND::l_Construct(lua_State* luaVM)
+{
+	Handle h("EVENT", sizeof(Event_CREATE_WIND));
+	Event_CREATE_WIND* pEvt = new(h) Event_CREATE_WIND;
+
+	int numArgs, iNumArgs;
+	numArgs = iNumArgs = 32;
+
+	Vector3 pos, u, v, n, attenuation;
+	Vector4 diffuse, spec, ambient;
+	float spotPower, range;
+	bool isShadowCaster;
+
+	float positionFactor = 1.0f / 100.0f;
+
+	pos.m_x = (float)lua_tonumber(luaVM, -iNumArgs--) * positionFactor;
+	pos.m_y = (float)lua_tonumber(luaVM, -iNumArgs--) * positionFactor;
+	pos.m_z = (float)lua_tonumber(luaVM, -iNumArgs--) * positionFactor;
+
+	u.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	u.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	u.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	v.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	v.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	v.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	n.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	n.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	n.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	const char* typeStr = lua_tostring(luaVM, -iNumArgs--);
+
+	diffuse.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	diffuse.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	diffuse.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+	diffuse.m_w = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	spec.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	spec.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	spec.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+	spec.m_w = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	ambient.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	ambient.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	ambient.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+	ambient.m_w = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	attenuation.m_x = (float)lua_tonumber(luaVM, -iNumArgs--);
+	attenuation.m_y = (float)lua_tonumber(luaVM, -iNumArgs--);
+	attenuation.m_z = (float)lua_tonumber(luaVM, -iNumArgs--);
+
+	spotPower = (float)lua_tonumber(luaVM, -iNumArgs--);
+	range = (float)lua_tonumber(luaVM, -iNumArgs--);
+	isShadowCaster = lua_toboolean(luaVM, -iNumArgs--) != 0;
+
+	pEvt->m_peuuid = LuaGlue::readPEUUID(luaVM, -iNumArgs--);
+
+
+	lua_pop(luaVM, numArgs); //Second arg is a count of how many to pop
+
+	pEvt->m_pos = pos;
+	pEvt->m_u = u;
+	pEvt->m_v = v;
+	pEvt->m_n = n;
+
+	pEvt->m_diffuse = diffuse;
+	pEvt->m_spec = spec;
+	pEvt->m_ambient = ambient;
+	pEvt->m_att = attenuation;
+	pEvt->m_spotPower = spotPower;
+	pEvt->m_range = range;
+	pEvt->m_isShadowCaster = isShadowCaster;
+
+	if (StringOps::strcmp(typeStr, "directional") == 0)
+	{
+		pEvt->m_type = 1;
+	}
+	else if (StringOps::strcmp(typeStr, "spot") == 0)
+	{
+		pEvt->m_type = 2;
+	}
+
+	LuaGlue::pushTableBuiltFromHandle(luaVM, h);
+
+	return 1;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // Event_CREATE_MESH

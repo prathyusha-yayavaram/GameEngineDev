@@ -64,11 +64,34 @@ struct SetPerObjectGroupConstantsShaderAction : ShaderAction
 		float pad2;
 		float pad3;
 	};
+
+	// struct to store Light properties
+	struct hlsl_Wind
+	{
+		Vector3	pos;
+		float pad0;
+
+		Vector3	dir;
+		float pad1;
+
+		Vector4	ambient;
+		Vector4	diffuse;
+		Vector4	spec;
+
+		Vector3	att;
+		float	spotPower;
+
+		float	range;
+		float	type; //0 = point, 1 = directional, 2 = spot
+		float pad2;
+		float pad3;
+	};
     
     static const int NUM_LIGHT_SOURCES = 4; // light sources to use
     // note shaders are hardcoded to allocate registers in shader files. if these valeus are changed, shaders have to be changed too
     static const int NUM_LIGHT_SOURCES_DATAS = 8; // ligth sources to store (shaders still assume we have registers allocated for 8 registers)
-
+	static const int NUM_WIND_SOURCES = 3;
+	static const int NUM_WIND_SOURCES_DATAS = 3;
 	// the actual data that is transferred to video memory
 	struct Data {
 		Matrix4x4 gViewProj;
@@ -81,6 +104,7 @@ struct SetPerObjectGroupConstantsShaderAction : ShaderAction
 		PrimitiveTypes::Float32 gDoMotionBlur;
 
 		hlsl_Light gLights[NUM_LIGHT_SOURCES_DATAS];
+		hlsl_Wind gWinds[NUM_WIND_SOURCES_DATAS];
 	} m_data;
 
 	NameToData m_nameToData[1];

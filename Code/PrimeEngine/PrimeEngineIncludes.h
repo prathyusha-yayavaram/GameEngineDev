@@ -96,6 +96,7 @@
 #include "Scene/TextSceneNode.h"
 #include "Scene/InstancingSceneNode.h"
 #include "Scene/Light.h"
+#include "Scene/Wind.h"
 #include "Scene/CameraManager.h"
 #include "Scene/DebugRenderer.h"
 

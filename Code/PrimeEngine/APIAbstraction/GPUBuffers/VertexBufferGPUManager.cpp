@@ -45,9 +45,9 @@ Handle VertexBufferGPUManager::createGPUBuffer(Handle hvb, Handle htcb, Handle h
 	return res;
 }
 
-Handle VertexBufferGPUManager::createGPUBufferFromVBufTCBufNBufTBuf(Handle hvb, Handle htcb, Handle hnb, Handle hTBuf, bool useBufferRegistry)
+Handle VertexBufferGPUManager::createGPUBufferFromVBufTCBufNBufTBuf(Handle hvb, Handle htcb, Handle hstcb, Handle hnb, Handle hTBuf, bool useBufferRegistry)
 {
-	Handle handles[] = {hvb, htcb, Handle(), hnb, hTBuf};
+	Handle handles[] = {hvb, htcb, hstcb, hnb, hTBuf};
 
 	Handle res;
 	
@@ -67,6 +67,7 @@ Handle VertexBufferGPUManager::createGPUBufferFromVBufTCBufNBufTBuf(Handle hvb, 
 	pvbgpu->createGPUBufferFromSource_DetailedMesh(
 		*hvb.getObject<PositionBufferCPU>(), 
 		*htcb.getObject<TexCoordBufferCPU>(),
+		*hstcb.getObject<TexCoordBufferCPU>(),
 		*hnb.getObject<NormalBufferCPU>(),
 		*hTBuf.getObject<TangentBufferCPU>());
 
@@ -292,7 +293,8 @@ void VertexBufferGPUManager::setupVertexBufferInfos()
 		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(3 * 4, PEScalarType_Float, 2, PESemanticType_TexCoord, "texcoord", 0);
 		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(5 * 4, PEScalarType_Float, 3, PESemanticType_Normal, "normal", 0);
 		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(8 * 4, PEScalarType_Float, 3, PESemanticType_Tangent, "tangent", 0);
-		
+		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(11 * 4, PEScalarType_Float, 2, PESemanticType_TexCoord, "texcoord5", 5);
+
 		info.m_bufferInfos.add(buf0);
 		info.setAPIValues();
 

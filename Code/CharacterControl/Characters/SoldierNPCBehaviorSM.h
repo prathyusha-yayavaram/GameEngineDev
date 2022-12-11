@@ -20,10 +20,12 @@ struct SoldierNPCBehaviorSM : public PE::Components::Component
 		IDLE, // stand in place
 		WAITING_FOR_WAYPOINT, // have a name of waypoint to go to, but it has not been loaded yet
 		PATROLLING_WAYPOINTS,
+		WAITING_FOR_TARGET_POS,
+		PATROLLING_NAVMESH_POS,
 	};
 
 
-	SoldierNPCBehaviorSM(PE::GameContext &context, PE::MemoryArena arena, PE::Handle hMyself, PE::Handle hMovementSM);
+	SoldierNPCBehaviorSM(PE::GameContext &context, PE::MemoryArena arena, PE::Handle hMyself, PE::Handle hMovementSM, PE::Handle hPathFindingEngine);
 
 	void start();
 
@@ -35,6 +37,10 @@ struct SoldierNPCBehaviorSM : public PE::Components::Component
 	//
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_SoldierNPCMovementSM_Event_TARGET_REACHED)
 	virtual void do_SoldierNPCMovementSM_Event_TARGET_REACHED(PE::Events::Event *pEvt);
+
+	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_PathFindingEngine_Event_PATH_POSITIONS_FOUND)
+	void SoldierNPCBehaviorSM::do_PathFindingEngine_Event_PATH_POSITIONS_FOUND(PE::Events::Event* pEvt);
+	
 	//
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_UPDATE)
 	virtual void do_UPDATE(PE::Events::Event *pEvt);
@@ -44,8 +50,15 @@ struct SoldierNPCBehaviorSM : public PE::Components::Component
 
 	PE::Handle m_hMovementSM;
 
+	PE::Handle m_pathFindingEngine;
+
+	Array<Vector3> m_pathPositions;
+	int m_curPathPositionIndex;
+
 	bool m_havePatrolWayPoint;
 	char m_curPatrolWayPoint[32];
+
+	bool m_isAiAgent;
 	States m_state;
 };
 

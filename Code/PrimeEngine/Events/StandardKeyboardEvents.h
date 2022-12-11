@@ -54,6 +54,25 @@ struct Event_KEY_L_HELD : public Event {
 	virtual ~Event_KEY_L_HELD(){}
 };
 
+struct Event_KEY_T_HELD : public Event {
+	PE_DECLARE_CLASS(Event_KEY_T_HELD);
+	virtual ~Event_KEY_T_HELD() {}
+};
+
+struct Event_KEY_J_HELD : public Event {
+	PE_DECLARE_CLASS(Event_KEY_J_HELD);
+	Event_KEY_J_HELD(Vector3 targetPos) : m_targetPos(targetPos) {}
+	virtual ~Event_KEY_J_HELD() {}
+	Vector3 m_targetPos;
+};
+
+struct Event_KEY_H_HELD : public Event {
+	PE_DECLARE_CLASS(Event_KEY_H_HELD);
+	Event_KEY_H_HELD(Vector3 targetPos) : m_targetPos(targetPos) {}
+	virtual ~Event_KEY_H_HELD() {}
+	Vector3 m_targetPos;
+};
+
 struct Event_KEY_LEFT_HELD : public Event {
 	PE_DECLARE_CLASS(Event_KEY_LEFT_HELD);
 	virtual ~Event_KEY_LEFT_HELD(){}

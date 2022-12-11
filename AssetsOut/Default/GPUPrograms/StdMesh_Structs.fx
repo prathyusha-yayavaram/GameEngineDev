@@ -102,13 +102,13 @@ struct STD_MESH_SHADOWED_PS_IN
 	varying float4 pIn_iProjTexCoord;
 
     #define STD_MESH_PS_IN_FILL_FROM_VARYINGS(pIn) \
-        /*pIn.iPosH = gl_Position;*/ \
+        /* pIn.iPosH = gl_Position; \ */
         pIn.iPosW = pIn_iPosW; \
         pIn.iTexCoord = pIn_iTexCoord; \
         pIn.iNormalW = pIn_iNormalW;
 
 	#define STD_MESH_SHADOWED_PS_IN_FILL_FROM_VARYINGS(pIn) \
-        /*pIn.iPosH = gl_Position;*/ \
+        //pIn.iPosH = gl_Position; \
         pIn.iPosW = pIn_iPosW; \
         pIn.iTexCoord = pIn_iTexCoord; \
         pIn.iNormalW = pIn_iNormalW; \

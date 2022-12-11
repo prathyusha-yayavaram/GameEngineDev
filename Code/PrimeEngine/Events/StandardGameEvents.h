@@ -25,6 +25,15 @@ struct Event_FLY_CAMERA : public Event {
 	Vector3 m_relativeMove;
 };
 
+struct Event_TOP_VIEW_CAMERA : public Event {
+	PE_DECLARE_CLASS(Event_TOP_VIEW_CAMERA);
+
+	Event_TOP_VIEW_CAMERA() {}
+	virtual ~Event_TOP_VIEW_CAMERA() {}
+
+	Vector3 m_relativeMove;
+};
+
 struct Event_ROTATE_CAMERA : public Event {
 	PE_DECLARE_CLASS(Event_ROTATE_CAMERA);
 

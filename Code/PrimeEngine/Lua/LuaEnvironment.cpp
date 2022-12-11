@@ -73,6 +73,8 @@ void LuaEnvironment::addDefaultComponents()
 	Component::addDefaultComponents();
 
 	PE_REGISTER_EVENT_HANDLER(Events::Event_UPDATE, LuaEnvironment::do_UPDATE);
+	PE_REGISTER_EVENT_HANDLER(Events::Event_MOUSE_CLICK, LuaEnvironment::do_UPDATE);
+	PE_REGISTER_EVENT_HANDLER(Events::Event_NAVMESH_PROP2, LuaEnvironment::do_UPDATE);
 }
 
 void LuaEnvironment::do_UPDATE(Events::Event *pEvt)

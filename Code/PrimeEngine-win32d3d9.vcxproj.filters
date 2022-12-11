@@ -613,6 +613,9 @@
     <Filter Include="PrimeEngine\Lua\Networking\Server">
       <UniqueIdentifier>{B5798EB7-2192-75E1-EA3E-057B56160A7B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrimeEngine\NavMesh">
+      <UniqueIdentifier>{095e0099-1986-45f5-b60f-488c1e75bae7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrimeEngine\APIAbstraction\APIAbstractionDefines.h">
@@ -1113,6 +1116,9 @@
     <ClInclude Include="PrimeEngine\Utils\StringOps.h">
       <Filter>PrimeEngine\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="PrimeEngine\NavMesh\PathFindingEngine.h">
+      <Filter>PrimeEngine\NavMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AssetsOut\Default\GPUPrograms\nums_spe.c">
@@ -1543,6 +1549,9 @@
     </ClCompile>
     <ClCompile Include="PrimeEngine\Utils\PEString.cpp">
       <Filter>PrimeEngine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimeEngine\NavMesh\PathFindingEngine.cpp">
+      <Filter>PrimeEngine\NavMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3390,6 +3399,12 @@
     </None>
     <None Include="PrimeEngine\premake4-primeengine.lua">
       <Filter>PrimeEngine</Filter>
+    </None>
+    <None Include="..\AssetsOut\Default\Scripts\NavMesh.lua">
+      <Filter>AssetsOut\Default\Scripts</Filter>
+    </None>
+    <None Include="..\AssetsOut\Default\GameObjectMetaScripts\NavMesh.py">
+      <Filter>AssetsOut\Default\GameObjectMetaScripts</Filter>
     </None>
   </ItemGroup>
 </Project>

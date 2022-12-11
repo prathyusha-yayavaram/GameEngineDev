@@ -613,6 +613,9 @@
     <Filter Include="PrimeEngine\Utils\Array">
       <UniqueIdentifier>{26364744-926D-8FDB-9B77-F3FE072EB6D4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrimeEngine\NavMesh">
+      <UniqueIdentifier>{ab9e8052-2342-4863-8ffd-66748600e70f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrimeEngine\APIAbstraction\APIAbstractionDefines.h">
@@ -1113,6 +1116,9 @@
     <ClInclude Include="PrimeEngine\Utils\StringOps.h">
       <Filter>PrimeEngine\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="PrimeEngine\NavMesh\PathFindingEngine.h">
+      <Filter>PrimeEngine\NavMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AssetsOut\Default\GPUPrograms\nums_spe.c">
@@ -1543,6 +1549,9 @@
     </ClCompile>
     <ClCompile Include="PrimeEngine\Utils\PEString.cpp">
       <Filter>PrimeEngine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimeEngine\NavMesh\PathFindingEngine.cpp">
+      <Filter>PrimeEngine\NavMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

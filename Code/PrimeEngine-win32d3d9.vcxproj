@@ -194,6 +194,7 @@
     <ClInclude Include="PrimeEngine\MemoryManagement\Handle.h" />
     <ClInclude Include="PrimeEngine\MemoryManagement\MemoryManager.h" />
     <ClInclude Include="PrimeEngine\MemoryManagement\MemoryPool.h" />
+    <ClInclude Include="PrimeEngine\NavMesh\PathFindingEngine.h" />
     <ClInclude Include="PrimeEngine\Networking\Client\ClientConnectionManager.h" />
     <ClInclude Include="PrimeEngine\Networking\Client\ClientNetworkManager.h" />
     <ClInclude Include="PrimeEngine\Networking\ConnectionManager.h" />
@@ -353,6 +354,7 @@
     <ClCompile Include="PrimeEngine\Math\CameraOps.cpp" />
     <ClCompile Include="PrimeEngine\MemoryManagement\MemoryManager.cpp" />
     <ClCompile Include="PrimeEngine\MemoryManagement\MemoryPool.cpp" />
+    <ClCompile Include="PrimeEngine\NavMesh\PathFindingEngine.cpp" />
     <ClCompile Include="PrimeEngine\Networking\Client\ClientConnectionManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\Client\ClientNetworkManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\ConnectionManager.cpp" />
@@ -679,6 +681,7 @@
     <None Include="..\AssetsOut\Default\AnimationSpeedSets\kingtiger.x.sset" />
     <None Include="..\AssetsOut\Default\AnimationSpeedSets\necro.x_animation_speed_set.animspeedseta" />
     <None Include="..\AssetsOut\Default\AnimationSpeedSets\soldier.x.sset" />
+    <None Include="..\AssetsOut\Default\GameObjectMetaScripts\NavMesh.py" />
     <None Include="..\AssetsOut\Default\GPUPrograms\APIAbstraction.gpu" />
     <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_2D_VS.cgvs" />
     <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_A_0_PS.cgps" />
@@ -819,6 +822,7 @@
     <None Include="..\AssetsOut\Default\PositionBuffers\necro.x_necrofinal_vertex_buffer.bufa" />
     <None Include="..\AssetsOut\Default\PositionBuffers\soldier.x_soldiermesh_vertex_buffer.bufa" />
     <None Include="..\AssetsOut\Default\Scripts\LightSource.lua" />
+    <None Include="..\AssetsOut\Default\Scripts\NavMesh.lua" />
     <None Include="..\AssetsOut\Default\Scripts\Skin.lua" />
     <None Include="..\AssetsOut\Default\Scripts\StaticMesh.lua" />
     <None Include="..\AssetsOut\Default\Skeletons\necro.x_skeleton.skela" />

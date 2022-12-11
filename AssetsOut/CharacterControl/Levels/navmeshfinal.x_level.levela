@@ -1,0 +1,106 @@
+LevelLoader.CreateGameObject("PEObject20_tArrow",-0.883695, 0.0, -0.468063, 0.0, -0.0, 1.0, -0.0, 0.0, 0.468063, 0.0, -0.883695, 0.0, 162.780497, 0.0, 645.12192, 1.0, 'navMeshfinal.x_PEObject20_tArro.lua', 'CharacterControl',0xec53cb5e, 0x1c5411e0, 0x955f001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject58_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -546.94827, 0.0, 237.255752, 1.0, 'navMeshfinal.x_PEObject58_tArro.lua', 'CharacterControl',0x3c8e54b0, 0x6a1d11ed, 0xb4eec821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject68_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -836.288482, 0.0, -167.116269, 1.0, 'navMeshfinal.x_PEObject68_tArro.lua', 'CharacterControl',0xb7b77af0, 0x6a2611ed, 0xa2c7c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject77_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -830.523578, 0.0, 764.554404, 1.0, 'navMeshfinal.x_PEObject77_tArro.lua', 'CharacterControl',0x4ebab0c0, 0x6a2711ed, 0xba5ac821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject70_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -1103.890219, 0.0, -157.377256, 1.0, 'navMeshfinal.x_PEObject70_tArro.lua', 'CharacterControl',0xd4bb274f, 0x6a2611ed, 0x8136c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject19_tArrow",-0.488974, 0.0, 0.872298, 0.0, 0.0, 1.0, -0.0, 0.0, -0.872298, -0.0, -0.488974, 0.0, 221.074785, 0.0, 484.371816, 1.0, 'navMeshfinal.x_PEObject19_tArro.lua', 'CharacterControl',0xe01bbe1e, 0x1c5411e0, 0xa2f0001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject76_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -830.780762, 0.0, 622.465084, 1.0, 'navMeshfinal.x_PEObject76_tArro.lua', 'CharacterControl',0x3c60a970, 0x6a2711ed, 0xa0e5c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject71_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -1153.186968, 0.0, -21.670992, 1.0, 'navMeshfinal.x_PEObject71_tArro.lua', 'CharacterControl',0xe445e200, 0x6a2611ed, 0x88f5c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject11_polySurface1",0.505334, -0.824007, 0.256223, 0.0, -0.453042, -0.000628, 0.891489, 0.0, -0.734432, -0.56658, -0.373627, 0.0, 188.463853, 415.850019, 31.255456, 1.0, 'navMeshfinal.x_PEObject11_polyS.lua', 'CharacterControl',0x460ec6d1, 0x146911e0, 0x86d30025, 0xd3ac504f)
+
+LevelLoader.CreateGameObject("PEObject72_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -1129.33563, 0.0, 160.177142, 1.0, 'navMeshfinal.x_PEObject72_tArro.lua', 'CharacterControl',0xf592bf11, 0x6a2611ed, 0xb30ac821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject81_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -520.400901, 0.0, 285.555995, 1.0, 'navMeshfinal.x_PEObject81_tArro.lua', 'CharacterControl',0xc8232a4f, 0x6a2711ed, 0xae60c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject17_pCar",0.010264, 0.0, -0.999947, 0.0, -0.0, 1.0, -0.0, 0.0, 0.999947, 0.0, 0.010264, 0.0, -168.254722, 0.0, 525.275342, 1.0, 'navMeshfinal.x_PEObject17_pCar.lua', 'CharacterControl',0xb2cfd370, 0x1c5411e0, 0x9f4e001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject74_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -837.50324, 0.0, 239.386117, 1.0, 'navMeshfinal.x_PEObject74_tArro.lua', 'CharacterControl',0x12c591c0, 0x6a2711ed, 0xa1f4c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject59_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -440.022154, 0.0, 128.292119, 1.0, 'navMeshfinal.x_PEObject59_tArro.lua', 'CharacterControl',0x518797f0, 0x6a1d11ed, 0xb2f8c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject63_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -607.010551, 0.0, -400.104301, 1.0, 'navMeshfinal.x_PEObject63_tArro.lua', 'CharacterControl',0xa6586480, 0x6a1d11ed, 0x9021c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject84_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -151.039112, 0.0, 277.762503, 1.0, 'navMeshfinal.x_PEObject84_tArro.lua', 'CharacterControl',0xf174dcf0, 0x6a2711ed, 0xbf3bc821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject67_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -839.571497, 0.0, -339.606421, 1.0, 'navMeshfinal.x_PEObject67_tArro.lua', 'CharacterControl',0x368e7280, 0x6a2611ed, 0xa941c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject42_TspotRep",1.0, 0.0, 0.0, 0.0, -0.0, 0.0, 1.0, 0.0, -0.0, -1.0, 0.0, 0.0, 467.934881, 249.971079, 455.893852, 1.0, 'navMeshfinal.x_PEObject42_Tspot.lua', 'CharacterControl',0x4434ae2e, 0x467411e2, 0x98f20025, 0xd3ac504f)
+
+LevelLoader.CreateGameObject("PEObject33_Tstreetlight",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, 75.829804, 0.0, 744.163528, 1.0, 'navMeshfinal.x_PEObject33_Tstre.lua', 'CharacterControl',0x42883a0f, 0x1c6a11e0, 0x97b5001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject49_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, 214.819218, 0.0, 751.584403, 1.0, 'navMeshfinal.x_PEObject49_tArro.lua', 'CharacterControl',0x4450d900, 0x6a1511ed, 0xae8ac821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject57_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -642.757477, 0.0, 343.114026, 1.0, 'navMeshfinal.x_PEObject57_tArro.lua', 'CharacterControl',0x26fec4de, 0x6a1d11ed, 0x87dac821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject61_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -479.141867, 0.0, -150.221934, 1.0, 'navMeshfinal.x_PEObject61_tArro.lua', 'CharacterControl',0x82176300, 0x6a1d11ed, 0xb120c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject53_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -271.528961, 0.0, 677.693803, 1.0, 'navMeshfinal.x_PEObject53_tArro.lua', 'CharacterControl',0x7f62eb00, 0x6a1511ed, 0x8781c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject50_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, 97.319788, 0.0, 868.275993, 1.0, 'navMeshfinal.x_PEObject50_tArro.lua', 'CharacterControl',0x57c9e4de, 0x6a1511ed, 0x8e86c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject55_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -599.316128, 0.0, 646.916868, 1.0, 'navMeshfinal.x_PEObject55_tArro.lua', 'CharacterControl',0xb4e21f61, 0x6a1c11ed, 0xad15c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject69_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -967.045094, 0.0, -164.365188, 1.0, 'navMeshfinal.x_PEObject69_tArro.lua', 'CharacterControl',0xc5ee174f, 0x6a2611ed, 0x873cc821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject73_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -985.364077, 0.0, 220.077962, 1.0, 'navMeshfinal.x_PEObject73_tArro.lua', 'CharacterControl',0x068fa761, 0x6a2711ed, 0xa230c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject16_tArrow",0.875067, 0.0, 0.484002, 0.0, 0.0, 1.0, -0.0, 0.0, -0.484002, -0.0, 0.875067, 0.0, 211.9377, 0.0, 264.453977, 1.0, 'navMeshfinal.x_PEObject16_tArro.lua', 'CharacterControl',0x76f9d530, 0x1c5411e0, 0xbea5001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject79_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -574.83671, 0.0, 567.595867, 1.0, 'navMeshfinal.x_PEObject79_tArro.lua', 'CharacterControl',0xa28a39ee, 0x6a2711ed, 0xb45cc821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject21_tArrow",0.802985, 0.0, 0.596, 0.0, 0.0, 1.0, -0.0, 0.0, -0.596, -0.0, 0.802985, 0.0, -332.337619, 0.0, 477.007469, 1.0, 'navMeshfinal.x_PEObject21_tArro.lua', 'CharacterControl',0x90b4a1b0, 0x1c6011e0, 0x91c1001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject15_tArrow",0.412808, 0.0, -0.910818, 0.0, -0.0, 1.0, -0.0, 0.0, 0.910818, 0.0, 0.412808, 0.0, 162.000587, 0.0, 134.023193, 1.0, 'navMeshfinal.x_PEObject15_tArro.lua', 'CharacterControl',0x7077e0cf, 0x1c5411e0, 0xb14b001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject8_TspotRep",1.0, 0.0, 0.0, 0.0, -0.0, 0.004632, 0.999989, 0.0, -0.0, -0.999989, 0.004632, 0.0, 967.250827, 298.425626, -97.932148, 1.0, 'navMeshfinal.x_PEObject8_TspotR.lua', 'CharacterControl',0x124cf5c0, 0x13a511e0, 0xa20c0025, 0xd3ac504f)
+
+LevelLoader.CreateGameObject("PEObject66_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -842.168602, 0.0, -507.942876, 1.0, 'navMeshfinal.x_PEObject66_tArro.lua', 'CharacterControl',0xda95801e, 0x6a1d11ed, 0xaa10c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject47_pCar",-0.009443, 0.0, 0.999955, 0.0, 0.0, 1.0, -0.0, 0.0, -0.999955, -0.0, -0.009443, 0.0, -814.069363, 0.0, 916.079269, 1.0, 'navMeshfinal.x_PEObject47_pCar.lua', 'CharacterControl',0x06067f61, 0x6a1511ed, 0xb872c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject12_pPlane1",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -1.713802, 0.0, -4.034357, 1.0, 'navMeshfinal.x_PEObject12_pPlan.lua', 'CharacterControl',0x81a8b1c0, 0x1c5111e0, 0xa309001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject80_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -573.45061, 0.0, 406.541249, 1.0, 'navMeshfinal.x_PEObject80_tArro.lua', 'CharacterControl',0xb2ff0680, 0x6a2711ed, 0x8f78c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject56_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -652.069818, 0.0, 492.84886, 1.0, 'navMeshfinal.x_PEObject56_tArro.lua', 'CharacterControl',0x03a7600f, 0x6a1d11ed, 0xb284c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject83_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -273.283803, 0.0, 276.3587, 1.0, 'navMeshfinal.x_PEObject83_tArro.lua', 'CharacterControl',0xe428c79e, 0x6a2711ed, 0xb1e5c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject48_pCar",0.002112, 0.0, 0.999998, 0.0, 0.0, 1.0, -0.0, 0.0, -0.999998, -0.0, 0.002112, 0.0, -774.441958, 0.0, 76.747277, 1.0, 'navMeshfinal.x_PEObject48_pCar.lua', 'CharacterControl',0x114e6040, 0x6a1511ed, 0x8914c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject45_nazi_rep",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, 199.107586, 0.0, -0.0, 1.0, 'navMeshfinal.x_PEObject45_nazi_.lua', 'CharacterControl',0x2bda3070, 0x2bfc11e4, 0x9209b8e8, 0x560d92e3)
+
+LevelLoader.CreateGameObject("PEObject75_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -832.65721, 0.0, 452.012009, 1.0, 'navMeshfinal.x_PEObject75_tArro.lua', 'CharacterControl',0x30334a8f, 0x6a2711ed, 0xa1a5c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject82_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -393.643486, 0.0, 280.721096, 1.0, 'navMeshfinal.x_PEObject82_tArro.lua', 'CharacterControl',0xda7c6e4f, 0x6a2711ed, 0xa732c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject6_Tstreetlight",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -648.778231, 0.0, -260.644623, 1.0, 'navMeshfinal.x_PEObject6_Tstree.lua', 'CharacterControl',0x0f715440, 0x137d11e0, 0x9f3a0025, 0xd3ac504f)
+
+LevelLoader.CreateGameObject("PEObject28_pPlane1",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -2500.0, 0.0, -4.034357, 1.0, 'navMeshfinal.x_PEObject28_pPlan.lua', 'CharacterControl',0x102ebd70, 0x1c6811e0, 0x8cad001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject51_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -9.794053, 0.0, 777.274642, 1.0, 'navMeshfinal.x_PEObject51_tArro.lua', 'CharacterControl',0x6370125e, 0x6a1511ed, 0xad15c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject62_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -560.279385, 0.0, -255.896174, 1.0, 'navMeshfinal.x_PEObject62_tArro.lua', 'CharacterControl',0x98f7b5c0, 0x6a1d11ed, 0xbf92c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject54_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -435.83543, 0.0, 680.788182, 1.0, 'navMeshfinal.x_PEObject54_tArro.lua', 'CharacterControl',0xa9b6a021, 0x6a1c11ed, 0x9e07c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject30_pPlane1",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -2494.295318, 0.0, 2488.2724, 1.0, 'navMeshfinal.x_PEObject30_pPlan.lua', 'CharacterControl',0x74f1004f, 0x1c6911e0, 0x9875001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject78_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -694.686863, 0.0, 669.154705, 1.0, 'navMeshfinal.x_PEObject78_tArro.lua', 'CharacterControl',0x5ddcbe8f, 0x6a2711ed, 0xb35ec821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject65_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -745.732701, 0.0, -417.298589, 1.0, 'navMeshfinal.x_PEObject65_tArro.lua', 'CharacterControl',0xc655a1cf, 0x6a1d11ed, 0x967ac821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject52_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -117.136619, 0.0, 678.905347, 1.0, 'navMeshfinal.x_PEObject52_tArro.lua', 'CharacterControl',0x70f1ddae, 0x6a1511ed, 0xb347c821, 0x58aff92d)
+
+LevelLoader.CreateGameObject("PEObject24_pPlane1",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -8.0, 0.0, 2495.0, 1.0, 'navMeshfinal.x_PEObject24_pPlan.lua', 'CharacterControl',0x60b0498f, 0x1c6711e0, 0xb81d001b, 0x213b583a)
+
+LevelLoader.CreateGameObject("PEObject60_tArrow",1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.0, -0.0, -0.0, 1.0, 0.0, -436.093669, 0.0, -17.792792, 1.0, 'navMeshfinal.x_PEObject60_tArro.lua', 'CharacterControl',0x71f39ca1, 0x6a1d11ed, 0xa642c821, 0x58aff92d)
+

@@ -24,6 +24,23 @@ struct Event_CreateSoldierNPC : public PE::Events::Event_CREATE_MESH
 	char m_patrolWayPoint[32];
 };
 
+struct Event_CreateNavMesh : public PE::Events::Event_CREATE_MESH
+{
+	PE_DECLARE_CLASS(Event_CreateNavMesh);
+
+	Event_CreateNavMesh(int& threadOwnershipMask) : PE::Events::Event_CREATE_MESH(threadOwnershipMask) {}
+	// override SetLuaFunctions() since we are adding custom Lua interface
+	static void SetLuaFunctions(PE::Components::LuaEnvironment* pLuaEnv, lua_State* luaVM);
+
+	// Lua interface prefixed with l_
+	static int l_Construct(lua_State* luaVM);
+
+	int m_npcType;
+	char m_gunMeshName[64];
+	char m_gunMeshPackage[64];
+	char m_patrolWayPoint[32];
+};
+
 struct Event_MoveTank_C_to_S : public PE::Events::Event, public PE::Networkable
 {
 	PE_DECLARE_CLASS(Event_MoveTank_C_to_S);

@@ -388,6 +388,24 @@ int ClientGame::runGameFrame()
             pcam->m_base.moveRight(pRealEvent->m_relativeMove.getX());
             pcam->m_base.moveUp(pRealEvent->m_relativeMove.getY());
         }
+		else if (Event_TOP_VIEW_CAMERA::GetClassId() == pGeneralEvt->getClassId())
+		{
+		    Event_TOP_VIEW_CAMERA *pRealEvent = (Event_TOP_VIEW_CAMERA *)(pGeneralEvt);
+			Vector3 yAxisPos(0, 10, 0);
+			pcam->m_base.setPos(yAxisPos);
+			Vector3 origin(0, 0, 0);
+			Matrix4x4 v1;
+			Vector3 point1, point2;
+			v1.loadIdentity();
+			v1.m[0][0] = origin.m_x;
+			v1.m[1][0] = origin.m_y;
+			v1.m[2][0] = origin.m_z;
+			v1.m[3][0] = 1;
+			v1 = pcam->m_viewToProjectedTransform * v1;
+			point1 = Vector3(v1.m[0][0], v1.m[1][0], v1.m[2][0]);
+			//Vector3 transformedOrigin = pcam->m_worldToViewTransform.inverse()*origin;
+			pcam->m_base.turnTo(point1);
+		}
         else if (Event_ROTATE_CAMERA::GetClassId() == pGeneralEvt->getClassId())
         {
             Event_ROTATE_CAMERA *pRealEvent = (Event_ROTATE_CAMERA *)(pGeneralEvt);
@@ -412,12 +430,15 @@ int ClientGame::runGameFrame()
         {
 			// physics kick off
         }
+		else if (Event_MOUSE_CLICK::GetClassId() == pGeneralEvt->getClassId()) {
+			m_pContext->getGameObjectManager()->handleEvent(pGeneralEvt);
+		}
         else
         {
             // unknown event
             // pass it to both game object manager and scene graph
             
-           m_pContext->getGameObjectManager()->handleEvent(pGeneralEvt);
+            m_pContext->getGameObjectManager()->handleEvent(pGeneralEvt);
             proot->handleEvent(pGeneralEvt);
             
         } // end of old event style handling

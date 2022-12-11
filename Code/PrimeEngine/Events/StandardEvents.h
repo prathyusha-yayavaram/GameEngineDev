@@ -16,6 +16,7 @@
 #include "PrimeEngine/APIAbstraction/Effect/EffectEnums.h"
 
 #include "PrimeEngine/Utils/Networkable.h"
+#include "PrimeEngine/Utils/Array/Array.h"
 
 // Sibling/Children includes
 #include "Event.h"
@@ -32,6 +33,50 @@ struct Event_UPDATE : public Event {
 	virtual ~Event_UPDATE(){}
 	PrimitiveTypes::Float32 m_frameTime;
 };
+
+struct Event_MOUSE_CLICK : public Event {
+	PE_DECLARE_CLASS(Event_MOUSE_CLICK);
+
+	Event_MOUSE_CLICK(Vector3 targetPos) : m_targetPos(targetPos), m_frameTime(0) {}
+	virtual ~Event_MOUSE_CLICK() {}
+	PrimitiveTypes::Float32 m_frameTime;
+	Vector3 m_targetPos;
+};
+
+struct Event_NAVMESH_PROP2 : public Event {
+	PE_DECLARE_CLASS(Event_NAVMESH_PROP2);
+
+	Event_NAVMESH_PROP2(Vector3 targetPos) : m_targetPos(targetPos), m_frameTime(0) {}
+	virtual ~Event_NAVMESH_PROP2() {}
+	PrimitiveTypes::Float32 m_frameTime;
+	Vector3 m_targetPos;
+};
+
+struct Event_NAVMESH_PROP3 : public Event {
+	PE_DECLARE_CLASS(Event_NAVMESH_PROP3);
+
+	Event_NAVMESH_PROP3(Vector3 targetPos) : m_targetPos(targetPos), m_frameTime(0) {}
+	virtual ~Event_NAVMESH_PROP3() {}
+	PrimitiveTypes::Float32 m_frameTime;
+	Vector3 m_targetPos;
+};
+
+struct Event_FIND_PATH : public Event {
+
+	PE_DECLARE_CLASS(Event_FIND_PATH);
+	Vector3 m_targetPos;
+	Event_FIND_PATH(Vector3 targetPos) : m_targetPos(targetPos) {}
+};
+
+//struct PathFindingEngine_Event_PATH_POSITIONS_FOUND : public Event {
+//	PE_DECLARE_CLASS(PathFindingEngine_Event_PATH_POSITIONS_FOUND);
+//
+//	PathFindingEngine_Event_PATH_POSITIONS_FOUND()
+//	{}
+//	virtual ~PathFindingEngine_Event_PATH_POSITIONS_FOUND() {}
+//	
+//	Array<Vector3> m_pathPositions;
+//};
 
 struct Event_SCENE_GRAPH_UPDATE : public Event {
 	PE_DECLARE_CLASS(Event_SCENE_GRAPH_UPDATE);

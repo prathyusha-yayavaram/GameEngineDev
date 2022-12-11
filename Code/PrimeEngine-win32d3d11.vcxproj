@@ -21,13 +21,13 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -194,6 +194,7 @@
     <ClInclude Include="PrimeEngine\MemoryManagement\Handle.h" />
     <ClInclude Include="PrimeEngine\MemoryManagement\MemoryManager.h" />
     <ClInclude Include="PrimeEngine\MemoryManagement\MemoryPool.h" />
+    <ClInclude Include="PrimeEngine\NavMesh\PathFindingEngine.h" />
     <ClInclude Include="PrimeEngine\Networking\Client\ClientConnectionManager.h" />
     <ClInclude Include="PrimeEngine\Networking\Client\ClientNetworkManager.h" />
     <ClInclude Include="PrimeEngine\Networking\ConnectionManager.h" />
@@ -353,6 +354,7 @@
     <ClCompile Include="PrimeEngine\Math\CameraOps.cpp" />
     <ClCompile Include="PrimeEngine\MemoryManagement\MemoryManager.cpp" />
     <ClCompile Include="PrimeEngine\MemoryManagement\MemoryPool.cpp" />
+    <ClCompile Include="PrimeEngine\NavMesh\PathFindingEngine.cpp" />
     <ClCompile Include="PrimeEngine\Networking\Client\ClientConnectionManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\Client\ClientNetworkManager.cpp" />
     <ClCompile Include="PrimeEngine\Networking\ConnectionManager.cpp" />

@@ -4,6 +4,7 @@
 #include "PrimeEngine/Scene/SkeletonInstance.h"
 #include "PrimeEngine/Scene/MeshInstance.h"
 #include "PrimeEngine/Scene/RootSceneNode.h"
+#include "PrimeEngine/NavMesh/PathFindingEngine.h"
 
 #include "SoldierNPC.h"
 #include "SoldierNPCAnimationSM.h"
@@ -152,9 +153,13 @@ SoldierNPC::SoldierNPC(PE::GameContext &context, PE::MemoryArena arena, PE::Hand
 	// add it to soldier NPC
 	addComponent(hSoldierMovementSM);
 
+	PE::Handle hPathFindingEngine("PathFindingEngine", sizeof(PathFindingEngine));
+	PathFindingEngine *pPathFindingEngine = new(hPathFindingEngine) PathFindingEngine(*m_pContext, m_arena, hPathFindingEngine);
+	pPathFindingEngine->addDefaultComponents();
+
 	// add behavior state machine ot soldier npc
     PE::Handle hSoldierBheaviorSM("SoldierNPCBehaviorSM", sizeof(SoldierNPCBehaviorSM));
-	SoldierNPCBehaviorSM *pSoldierBehaviorSM = new(hSoldierBheaviorSM) SoldierNPCBehaviorSM(*m_pContext, m_arena, hSoldierBheaviorSM, hSoldierMovementSM);
+	SoldierNPCBehaviorSM *pSoldierBehaviorSM = new(hSoldierBheaviorSM) SoldierNPCBehaviorSM(*m_pContext, m_arena, hSoldierBheaviorSM, hSoldierMovementSM, hPathFindingEngine);
 	pSoldierBehaviorSM->addDefaultComponents();
 
 	// add it to soldier NPC
@@ -162,7 +167,7 @@ SoldierNPC::SoldierNPC(PE::GameContext &context, PE::MemoryArena arena, PE::Hand
 
 	StringOps::writeToString(pEvt->m_patrolWayPoint, pSoldierBehaviorSM->m_curPatrolWayPoint, 32);
 	pSoldierBehaviorSM->m_havePatrolWayPoint = StringOps::length(pSoldierBehaviorSM->m_curPatrolWayPoint) > 0;
-
+	//pSoldierBehaviorSM->m_isAiAgent = true;
 	// start the soldier
 	pSoldierBehaviorSM->start();
 #endif

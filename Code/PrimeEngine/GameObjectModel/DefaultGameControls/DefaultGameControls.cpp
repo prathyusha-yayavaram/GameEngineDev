@@ -217,11 +217,45 @@ void DefaultGameControls::handleKeyboardDebugInputEvents(Event *pEvt)
 	else if (Event_KEY_W_HELD::GetClassId() == pEvt->getClassId())
 	{
 		Handle h("EVENT", sizeof(Event_FLY_CAMERA));
-		Event_FLY_CAMERA *flyCameraEvt = new(h) Event_FLY_CAMERA ;
+		Event_FLY_CAMERA *flyCameraEvt = new(h) Event_FLY_CAMERA;
 
 		Vector3 relativeMovement(0.0f,0.0f,1.0f);
 
 		flyCameraEvt->m_relativeMove = relativeMovement * Debug_Fly_Speed * m_frameTime;
+
+		m_pQueueManager->add(h, QT_GENERAL);
+	}
+	else if (Event_KEY_H_HELD::GetClassId() == pEvt->getClassId())
+	{
+		Event_KEY_H_HELD* pRealEvent = (Event_KEY_H_HELD*)(pEvt);
+
+		Handle h("EVENT", sizeof(Event_MOUSE_CLICK));
+		Event_MOUSE_CLICK* mouseClickEvt = new(h) Event_MOUSE_CLICK(pRealEvent->m_targetPos);
+
+		m_pQueueManager->add(h, QT_GENERAL);
+	}
+	else if (Event_KEY_J_HELD::GetClassId() == pEvt->getClassId())
+	{
+		Event_KEY_J_HELD* pRealEvent = (Event_KEY_J_HELD*)(pEvt);
+
+		Handle h("EVENT", sizeof(Event_NAVMESH_PROP2));
+		Event_NAVMESH_PROP2* mouseClickEvt = new(h) Event_NAVMESH_PROP2(pRealEvent->m_targetPos);
+
+		m_pQueueManager->add(h, QT_GENERAL);
+	}
+	/*else if (Event_KEY_K_HELD::GetClassId() == pEvt->getClassId())
+	{
+		Event_KEY_K_HELD* pRealEvent = (Event_KEY_K_HELD*)(pEvt);
+
+		Handle h("EVENT", sizeof(Event_NAVMESH_PROP3));
+		Event_NAVMESH_PROP3* mouseClickEvt = new(h) Event_NAVMESH_PROP3(pRealEvent->m_targetPos);
+
+		m_pQueueManager->add(h, QT_GENERAL);
+	}*/
+	else if (Event_KEY_T_HELD::GetClassId() == pEvt->getClassId())
+	{
+		Handle h("EVENT", sizeof(Event_TOP_VIEW_CAMERA));
+		Event_TOP_VIEW_CAMERA* flyCameraEvt = new(h) Event_TOP_VIEW_CAMERA;
 
 		m_pQueueManager->add(h, QT_GENERAL);
 	}

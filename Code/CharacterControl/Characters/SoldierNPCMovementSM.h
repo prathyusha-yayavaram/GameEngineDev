@@ -21,10 +21,25 @@ struct SoldierNPCMovementSM_Event_MOVE_TO : public PE::Events::Event {
 	Vector3 m_targetPosition;
 };
 
+struct SoldierNPCBehaviorSM_Event_TARGET_POS : public PE::Events::Event {
+	PE_DECLARE_CLASS(SoldierNPCBehaviorSM_Event_TARGET_POS);
+
+	SoldierNPCBehaviorSM_Event_TARGET_POS(Vector3 targetPos = Vector3());
+
+	Vector3 m_targetPosition;
+};
+
 struct SoldierNPCMovementSM_Event_STOP : public PE::Events::Event {
 	PE_DECLARE_CLASS(SoldierNPCMovementSM_Event_STOP);
 
 	SoldierNPCMovementSM_Event_STOP()
+	{}
+};
+
+struct SoldierNPCMovementSM_Event_PATH_STEP_REACHED : public PE::Events::Event {
+	PE_DECLARE_CLASS(SoldierNPCMovementSM_Event_PATH_STEP_REACHED);
+
+	SoldierNPCMovementSM_Event_PATH_STEP_REACHED()
 	{}
 };
 

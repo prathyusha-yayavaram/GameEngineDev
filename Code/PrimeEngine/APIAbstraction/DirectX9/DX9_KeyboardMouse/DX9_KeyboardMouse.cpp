@@ -117,6 +117,36 @@ void DX9_KeyboardMouse::generateButtonEvents()
 			new (h) Event_KEY_L_HELD;
 			m_pQueueManager->add(h, Events::QT_INPUT);
 		}
+		if (GetAsyncKeyState('T') & 0x8000)
+		{
+			Handle h("EVENT", sizeof(Event_KEY_T_HELD));
+			new (h) Event_KEY_T_HELD;
+			m_pQueueManager->add(h, Events::QT_INPUT);
+		}
+		if (GetAsyncKeyState('J') & 0x8000)
+		{
+			POINT current_mouse_pos = {};
+			::GetCursorPos(&current_mouse_pos);
+			Handle h("EVENT", sizeof(Event_KEY_J_HELD));
+			Vector3 clickPos;
+			clickPos.m_x = current_mouse_pos.x;
+			clickPos.m_y = 0;
+			clickPos.m_z = current_mouse_pos.y;
+			new (h) Event_KEY_J_HELD(clickPos);
+			m_pQueueManager->add(h, Events::QT_INPUT);
+		}
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+		{
+			POINT current_mouse_pos = {};
+			::GetCursorPos(&current_mouse_pos);
+			Handle h("EVENT", sizeof(Event_KEY_H_HELD));
+			Vector3 clickPos;
+			clickPos.m_x = current_mouse_pos.x;
+			clickPos.m_y = 0;
+			clickPos.m_z = current_mouse_pos.y;
+			new (h) Event_KEY_H_HELD(clickPos);
+			m_pQueueManager->add(h, Events::QT_INPUT);
+		}
 	}
 }
 
